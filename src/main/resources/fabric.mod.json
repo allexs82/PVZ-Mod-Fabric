@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "apvz",
+	"version": "${version}",
+	"name": "allexs82's Plants vs. Zombies",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"allexs82"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/apvz/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"ru.allexs82.apvz.core.ModCore"
+		]
+	},
+	"mixins": [
+		"apvz.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.20.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
