@@ -14,6 +14,8 @@ public class ModCore implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
+		ModItems.init();
+		ModCommands.init();
 	}
 
 	public static Identifier id(String path) {

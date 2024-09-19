@@ -1,16 +1,32 @@
 package ru.allexs82.apvz.common.cca;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class MoneyComponent implements AutoSyncedComponent {
-    @Override
-    public void readFromNbt(NbtCompound tag) {
+    private final PlayerEntity player;
+    private int money = 0;
 
+    public MoneyComponent(PlayerEntity player) {
+        this.player = player;
+    }
+
+    public int getMoney() {
+        return this.money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     @Override
-    public void writeToNbt(NbtCompound tag) {
+    public void readFromNbt(NbtCompound nbt) {
+        this.money = nbt.contains("money") ? nbt.getInt("money") : 0;
+    }
 
+    @Override
+    public void writeToNbt(NbtCompound nbt) {
+        nbt.putInt("money", this.money);
     }
 }

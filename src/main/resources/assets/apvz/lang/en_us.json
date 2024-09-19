@@ -1,0 +1,7 @@
+{
+  "command.money.get.error": "Player not found",
+  "command.money.get.success": "Player %1$s has %2$s money",
+  "command.money.set.success.single": "Set money to %1$s for %2$s",
+  "command.money.set.success.multiple": "Set money to %1$s for %2$s targets"
+
+}
