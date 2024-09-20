@@ -7,5 +7,7 @@ public class ModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModCore.LOGGER.info("Client initialization");
+        ModModelLayers.init();
+        ModEntitiesRenders.init();
     }
 }

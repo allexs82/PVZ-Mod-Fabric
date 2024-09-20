@@ -16,6 +16,7 @@ public class ModCore implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		ModItems.init();
 		ModCommands.init();
+		ModEntities.init();
 	}
 
 	public static Identifier id(String path) {

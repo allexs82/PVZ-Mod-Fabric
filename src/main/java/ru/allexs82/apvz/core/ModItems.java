@@ -3,6 +3,7 @@ package ru.allexs82.apvz.core;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Rarity;
 import ru.allexs82.apvz.common.item.MoneyItem;
 
 public class ModItems {
@@ -20,7 +21,7 @@ public class ModItems {
 
     static {
         SILVER_COIN = register("silver_coin", new MoneyItem(new Item.Settings(), 10));
-        GOLDEN_COIN = register("golden_coin", new MoneyItem(new Item.Settings(), 100));
-        DIAMOND = register("diamond", new MoneyItem(new Item.Settings(), 1000));
+        GOLDEN_COIN = register("golden_coin", new MoneyItem(new Item.Settings().rarity(Rarity.UNCOMMON), 100));
+        DIAMOND = register("diamond", new MoneyItem(new Item.Settings().rarity(Rarity.RARE), 1000));
     }
 }
