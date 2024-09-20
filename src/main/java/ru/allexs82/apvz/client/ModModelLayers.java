@@ -2,7 +2,7 @@ package ru.allexs82.apvz.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import ru.allexs82.apvz.client.entity.zombies.BasicZombieModel;
+import ru.allexs82.apvz.client.entity.zombies.model.BasicZombieModel;
 import ru.allexs82.apvz.core.ModCore;
 
 public class ModModelLayers {
