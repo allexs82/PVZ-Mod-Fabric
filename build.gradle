@@ -31,6 +31,13 @@ dependencies {
 
 	include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
 	include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
+
+	testImplementation "net.fabricmc:fabric-loader-junit:${project.loader_version}"
+	testImplementation "org.mockito:mockito-core:5.13.0"
+}
+
+test {
+	useJUnitPlatform()
 }
 
 processResources {

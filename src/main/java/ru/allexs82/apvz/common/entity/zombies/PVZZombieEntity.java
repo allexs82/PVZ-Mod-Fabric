@@ -8,11 +8,10 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.NotImplementedException;
 
-public abstract class AbstractPVZZombieEntity extends HostileEntity {
+public abstract class PVZZombieEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING =
-            DataTracker.registerData(AbstractPVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+            DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
     protected int idleAnimationCooldown = 0;
@@ -20,7 +19,7 @@ public abstract class AbstractPVZZombieEntity extends HostileEntity {
     public final AnimationState attackAnimationState = new AnimationState();
     protected int attackAnimationCooldown = 0;
 
-    protected AbstractPVZZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    protected PVZZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 

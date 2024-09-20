@@ -11,8 +11,8 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class BasicZombieEntity extends AbstractPVZZombieEntity {
-    public BasicZombieEntity(EntityType<? extends AbstractPVZZombieEntity> entityType, World world) {
+public class BasicZombieEntity extends PVZZombieEntity {
+    public BasicZombieEntity(EntityType<? extends PVZZombieEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -26,10 +26,10 @@ public class BasicZombieEntity extends AbstractPVZZombieEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new AttackGoal(this));
-        this.goalSelector.add(0, new RevengeGoal(this, AbstractPVZZombieEntity.class));
+        this.goalSelector.add(0, new RevengeGoal(this, PVZZombieEntity.class));
         this.goalSelector.add(1, new WanderAroundGoal(this, 1D));
 
-        this.targetSelector.add(0, new RevengeGoal(this, AbstractPVZZombieEntity.class));
+        this.targetSelector.add(0, new RevengeGoal(this, PVZZombieEntity.class));
     }
 
 
