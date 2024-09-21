@@ -10,11 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.core.ModSounds;
 
 public class SeedPacketItem extends SpawnEggItem {
     private static final int WHITE = 0xFFFFFFFF;
@@ -41,6 +43,7 @@ public class SeedPacketItem extends SpawnEggItem {
             }
         } else {
             BlockState blockState = context.getWorld().getBlockState(context.getBlockPos());
+            context.getWorld().playSound(null, context.getBlockPos(), ModSounds.PLANT, SoundCategory.NEUTRAL, 0.5f, 1.0f);
             if (canPlantOnTop(blockState)) return super.useOnBlock(context);
         }
 

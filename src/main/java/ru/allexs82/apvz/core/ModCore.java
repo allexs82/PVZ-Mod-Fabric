@@ -17,6 +17,7 @@ public class ModCore implements ModInitializer {
 		ModItems.init();
 		ModCommands.init();
 		ModEntities.init();
+		ModSounds.init();
 	}
 
 	public static Identifier id(String path) {

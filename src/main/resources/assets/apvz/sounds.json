@@ -1,0 +1,34 @@
+{
+  "zombie_groan": {
+    "subtitles": "apvz.zombie_groan",
+    "sounds": [
+      "apvz:groan",
+      "apvz:groan2",
+      "apvz:groan3",
+      "apvz:groan4",
+      "apvz:groan5",
+      "apvz:groan6"
+    ]
+  },
+  "plant": {
+    "subtitles": "apvz.plant",
+    "sounds": [
+      "apvz:plant",
+      "apvz:plant2"
+    ]
+  },
+  "zombie_chomp": {
+    "subtitles": "apvz.zombie_chomp",
+    "sounds": [
+      "apvz:chomp",
+      "apvz:chomp2",
+      "apvz:chompsoft"
+    ]
+  },
+  "gulp": {
+    "subtitles": "apvz.gulp",
+    "sounds": [
+      "apvz:gulp"
+    ]
+  }
+}

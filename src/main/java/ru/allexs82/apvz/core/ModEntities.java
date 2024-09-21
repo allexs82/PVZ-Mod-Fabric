@@ -37,6 +37,6 @@ public class ModEntities {
 
         SUNFLOWER_ENTITY = register("sunflower", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SunflowerEntity::new)
-                .dimensions(EntityDimensions.fixed(0.8f, 1.5f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
     }
 }

@@ -3,9 +3,16 @@
   "command.money.get.success": "Player %1$s has %2$s money",
   "command.money.set.success.single": "Set money to %1$s for %2$s",
   "command.money.set.success.multiple": "Set money to %1$s for %2$s targets",
+  "apvz.zombie_groan": "Zombie groan",
+  "apvz.plant": "Plant planted",
+  "apvz.zombie_chomp": "Zombie chomp",
+  "apvz.gulp": "Plant have been eaten",
+
   "item.apvz.silver_coin": "Silver coin",
   "item.apvz.golden_coin": "Golden coin",
   "item.apvz.diamond": "Diamond",
+  "item.apvz.empty_seed_packet": "Seed packet",
+  "item.apvz.sunflower_seed_packet": "Sunflower seed packet",
 
   "entity.apvz.basic_zombie": "Zombie",
 

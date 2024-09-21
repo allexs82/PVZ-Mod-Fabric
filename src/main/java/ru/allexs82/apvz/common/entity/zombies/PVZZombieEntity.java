@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.ai.goal.WanderAroundGoal;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -14,8 +15,11 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.core.ModSounds;
 
 public abstract class PVZZombieEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING =
@@ -45,6 +49,16 @@ public abstract class PVZZombieEntity extends HostileEntity {
 
     public void setAttacking(boolean attacking) {
         this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.ZOMBIE_GROAN;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return super.getHurtSound(source);
     }
 
     @Override

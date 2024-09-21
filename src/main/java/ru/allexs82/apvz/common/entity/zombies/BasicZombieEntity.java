@@ -6,8 +6,10 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import ru.allexs82.apvz.core.ModSounds;
 
 public class BasicZombieEntity extends PVZZombieEntity {
     public BasicZombieEntity(EntityType<? extends PVZZombieEntity> entityType, World world) {
@@ -88,6 +90,7 @@ public class BasicZombieEntity extends PVZZombieEntity {
             this.ticksUntilNextAttack = ATTACK_DELAY;
             this.mob.swingHand(Hand.MAIN_HAND);
             this.mob.tryAttack(pEnemy);
+            this.mob.getWorld().playSound(null, this.mob.getBlockPos(), ModSounds.ZOMBIE_CHOMP, SoundCategory.HOSTILE, 1.0F, 1.0F);
             this.reset();
         }
 

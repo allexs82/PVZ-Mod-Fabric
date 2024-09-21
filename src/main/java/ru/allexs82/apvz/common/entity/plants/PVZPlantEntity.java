@@ -12,10 +12,12 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.core.ModSounds;
 
 import java.util.List;
 
@@ -57,6 +59,14 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
         if (source.getAttacker() instanceof PlayerEntity) return false;
         if (source.getAttacker() instanceof PVZPlantEntity) return false;
         return super.damage(source, amount);
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource) {
+        if (damageSource.getAttacker() instanceof PVZZombieEntity) {
+            this.getWorld().playSound(null, this.getBlockPos(), ModSounds.GULP, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        }
+        super.onDeath(damageSource);
     }
 
     @Override
