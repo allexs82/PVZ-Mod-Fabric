@@ -33,10 +33,10 @@ public class ModEntities {
     static {
         BASIC_ZOMBIE_ENTITY = register("basic_zombie", FabricEntityTypeBuilder
                 .create(SpawnGroup.MONSTER, BasicZombieEntity::new)
-                .dimensions(EntityDimensions.fixed(1.0f, 2.0f)).build());
+                .dimensions(EntityDimensions.fixed(0.6f, 1.95f)).build());
 
         SUNFLOWER_ENTITY = register("sunflower", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SunflowerEntity::new)
-                .dimensions(EntityDimensions.fixed(1.0f, 1.5f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 1.5f)).build());
     }
 }

@@ -20,16 +20,16 @@ import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
 import java.util.List;
 
 public abstract class PVZPlantEntity extends PathAwareEntity {
-    private final boolean amphibious;
+    private final boolean aquatic;
     private final boolean defensive;
 
     protected PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
         this(entityType, world, false, false);
     }
 
-    protected PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world, boolean amphibious, boolean defensive) {
+    protected PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world, boolean aquatic, boolean defensive) {
         super(entityType, world);
-        this.amphibious = amphibious;
+        this.aquatic = aquatic;
         this.defensive = defensive;
     }
 
@@ -37,8 +37,8 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
         return defensive;
     }
 
-    public boolean isAmphibious() {
-        return amphibious;
+    public boolean isAquatic() {
+        return aquatic;
     }
 
     @Override
@@ -48,6 +48,9 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
 
     @Override
     public void addVelocity(double deltaX, double deltaY, double deltaZ) {}
+
+    @Override
+    public void takeKnockback(double strength, double x, double z) {}
 
     @Override
     public boolean damage(DamageSource source, float amount) {
