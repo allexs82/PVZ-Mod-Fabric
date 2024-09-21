@@ -11,7 +11,7 @@ import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 import ru.allexs82.apvz.core.ModCore;
 
 public class BasicZombieRenderer extends MobEntityRenderer<BasicZombieEntity, BasicZombieModel<BasicZombieEntity>> {
-    private static final Identifier TEXTURE = ModCore.id("textures/entity/basic_zombie.png");
+    private static final Identifier TEXTURE = ModCore.id("textures/entity/zombies/basic_zombie.png");
 
     public BasicZombieRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new BasicZombieModel<>(ctx.getPart(ModModelLayers.BASIC_ZOMBIE)), 0.6f);

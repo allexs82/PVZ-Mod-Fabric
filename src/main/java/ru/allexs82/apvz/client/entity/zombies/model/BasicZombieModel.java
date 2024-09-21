@@ -6,9 +6,10 @@ import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import ru.allexs82.apvz.client.entity.zombies.animation.BasicZombieAnimations;
+import ru.allexs82.apvz.client.util.HeadRotationUtil;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 
-public class BasicZombieModel<T extends BasicZombieEntity> extends SinglePartEntityModel<T> {
+public class BasicZombieModel<T extends BasicZombieEntity> extends AbstractZombieModel<T> {
 	private final ModelPart root;
 	private final ModelPart head;
 
@@ -38,12 +39,16 @@ public class BasicZombieModel<T extends BasicZombieEntity> extends SinglePartEnt
 	}
 	@Override
 	public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.getPart().traverse().forEach(ModelPart::resetTransform);
-		this.setHeadAngles(netHeadYaw, headPitch);
+		super.setAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
 		this.animateMovement(BasicZombieAnimations.WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
 		this.updateAnimation(entity.idleAnimationState, BasicZombieAnimations.IDLE, ageInTicks, 1f);
 		this.updateAnimation(entity.attackAnimationState, BasicZombieAnimations.ATTACK, ageInTicks, 1f);
+	}
+
+	@Override
+	protected ModelPart getHead() {
+		return head;
 	}
 
 	@Override
@@ -56,11 +61,4 @@ public class BasicZombieModel<T extends BasicZombieEntity> extends SinglePartEnt
 		return this.root;
 	}
 
-	private void setHeadAngles(float headYaw, float headPitch) {
-		headYaw = MathHelper.clamp(headYaw, -30.0F, 30.0F);
-		headPitch = MathHelper.clamp(headPitch, -25.0F, 45.0F);
-
-		this.head.yaw = headYaw * (float) (Math.PI / 180.0);
-		this.head.pitch = headPitch * (float) (Math.PI / 180.0);
-	}
 }

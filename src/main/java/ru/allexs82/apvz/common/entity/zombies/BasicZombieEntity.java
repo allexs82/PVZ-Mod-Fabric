@@ -3,8 +3,6 @@ package ru.allexs82.apvz.common.entity.zombies;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.RevengeGoal;
-import net.minecraft.entity.ai.goal.WanderAroundGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
@@ -24,14 +22,9 @@ public class BasicZombieEntity extends PVZZombieEntity {
     }
 
     @Override
-    protected void initGoals() {
+    protected void initCustomGoals() {
         this.goalSelector.add(0, new AttackGoal(this));
-        this.goalSelector.add(0, new RevengeGoal(this, PVZZombieEntity.class));
-        this.goalSelector.add(1, new WanderAroundGoal(this, 1D));
-
-        this.targetSelector.add(0, new RevengeGoal(this, PVZZombieEntity.class));
     }
-
 
     private static class AttackGoal extends MeleeAttackGoal {
         private static final int FIRST_ATTACK_DELAY = 10;

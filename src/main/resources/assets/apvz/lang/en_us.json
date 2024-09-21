@@ -5,5 +5,9 @@
   "command.money.set.success.multiple": "Set money to %1$s for %2$s targets",
   "item.apvz.silver_coin": "Silver coin",
   "item.apvz.golden_coin": "Golden coin",
-  "item.apvz.diamond": "Diamond"
+  "item.apvz.diamond": "Diamond",
+
+  "entity.apvz.basic_zombie": "Zombie",
+
+  "entity.apvz.sunflower": "Sunflower"
 }

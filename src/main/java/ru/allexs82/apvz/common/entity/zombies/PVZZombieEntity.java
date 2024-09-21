@@ -3,11 +3,19 @@ package ru.allexs82.apvz.common.entity.zombies;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.WanderAroundGoal;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.MerchantEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
+import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
 
 public abstract class PVZZombieEntity extends HostileEntity {
     private static final TrackedData<Boolean> ATTACKING =
@@ -38,6 +46,22 @@ public abstract class PVZZombieEntity extends HostileEntity {
     public void setAttacking(boolean attacking) {
         this.dataTracker.set(ATTACKING, attacking);
     }
+
+    @Override
+    protected void initGoals() {
+        this.goalSelector.add(1, new WanderAroundGoal(this, 1D));
+        this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
+
+        this.targetSelector.add(1, new RevengeGoal(this, PVZZombieEntity.class));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZPlantEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
+
+        initCustomGoals();
+    }
+
+    protected void initCustomGoals() {}
 
     @Override
     protected void initDataTracker() {
