@@ -13,6 +13,8 @@
   "item.apvz.diamond": "Diamond",
   "item.apvz.empty_seed_packet": "Seed packet",
   "item.apvz.sunflower_seed_packet": "Sunflower seed packet",
+  "item.apvz.pea": "Pea",
+  "entity.apvz.pea_entity": "Pea",
 
   "entity.apvz.basic_zombie": "Zombie",
 

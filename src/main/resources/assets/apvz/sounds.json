@@ -30,5 +30,20 @@
     "sounds": [
       "apvz:gulp"
     ]
+  },
+  "projectile_thrown": {
+    "subtitles": "apvz.projectile_thrown",
+    "sounds": [
+      "apvz:thrown",
+      "apvz:thrown2"
+    ]
+  },
+  "splat": {
+    "subtitles": "apvz.splat",
+    "sounds": [
+      "apvz:splat",
+      "apvz:splat2",
+      "apvz:splat3"
+    ]
   }
 }

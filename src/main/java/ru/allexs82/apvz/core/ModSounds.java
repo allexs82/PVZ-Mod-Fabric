@@ -10,6 +10,8 @@ public class ModSounds {
     public static final SoundEvent GULP = register("gulp");
     public static final SoundEvent PLANT = register("plant");
     public static final SoundEvent ZOMBIE_CHOMP = register("zombie_chomp");
+    public static final SoundEvent PROJECTILE_THROWN = register("projectile_thrown");
+    public static final SoundEvent SPLAT = register("splat");
 
     public static void init() {
         ModCore.LOGGER.info("Sounds initialization");
