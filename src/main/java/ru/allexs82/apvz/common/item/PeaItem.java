@@ -8,7 +8,7 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import ru.allexs82.apvz.common.entity.PeaEntity;
+import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.core.ModSounds;
 
 public class PeaItem extends Item {

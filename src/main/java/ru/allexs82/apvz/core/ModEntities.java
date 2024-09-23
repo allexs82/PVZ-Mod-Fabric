@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import ru.allexs82.apvz.common.entity.PeaEntity;
+import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.common.entity.plants.SunflowerEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 

@@ -70,6 +70,11 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
     }
 
     @Override
+    public boolean canBreatheInWater() {
+        return this.isAquatic();
+    }
+
+    @Override
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         if (stack.getItem() instanceof ShovelItem) {
@@ -86,7 +91,9 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
 
     @Override
     protected void initGoals() {
-        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 16f));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 16f));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PVZZombieEntity.class, 16f));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PVZPlantEntity.class, 16f));
 
         this.targetSelector.add(1, new RevengeGoal(this, PVZPlantEntity.class, PlayerEntity.class));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZZombieEntity.class, true));
