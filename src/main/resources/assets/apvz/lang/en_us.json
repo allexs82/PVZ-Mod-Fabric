@@ -7,6 +7,7 @@
   "apvz.plant": "Plant planted",
   "apvz.zombie_chomp": "Zombie chomp",
   "apvz.gulp": "Plant have been eaten",
+  "itemGroup.apvz": "allexs82's PVZ",
 
   "item.apvz.silver_coin": "Silver coin",
   "item.apvz.golden_coin": "Golden coin",
@@ -14,6 +15,8 @@
   "item.apvz.empty_seed_packet": "Seed packet",
   "item.apvz.sunflower_seed_packet": "Sunflower seed packet",
   "item.apvz.pea": "Pea",
+  "item.apvz.sun": "Sun",
+
   "entity.apvz.pea_entity": "Pea",
 
   "entity.apvz.basic_zombie": "Zombie",

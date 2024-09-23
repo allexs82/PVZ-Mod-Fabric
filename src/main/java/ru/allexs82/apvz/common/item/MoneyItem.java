@@ -21,6 +21,10 @@ public class MoneyItem extends Item {
             MoneyComponent component = ModComponents.MONEY.getNullable(player);
             if (component == null) return ActionResult.FAIL;
 
+            if (!player.getAbilities().creativeMode) {
+                context.getStack().decrement(1);
+            }
+
             component.setMoney(component.getMoney() + value);
             player.syncComponent(ModComponents.MONEY);
         }

@@ -90,7 +90,7 @@ public class BasicZombieEntity extends PVZZombieEntity {
             this.ticksUntilNextAttack = ATTACK_DELAY;
             this.mob.swingHand(Hand.MAIN_HAND);
             this.mob.tryAttack(pEnemy);
-            this.mob.getWorld().playSound(null, this.mob.getBlockPos(), ModSounds.ZOMBIE_CHOMP, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            this.mob.getWorld().playSound(null, this.mob.getBlockPos(), ModSounds.ZOMBIE_CHOMP, SoundCategory.HOSTILE, 0.5F, 1.0F);
             this.reset();
         }
 

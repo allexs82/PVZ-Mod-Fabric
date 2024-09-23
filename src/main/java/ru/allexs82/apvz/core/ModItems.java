@@ -15,6 +15,7 @@ public class ModItems {
     public static final Item EMPTY_SEED_PACKET;
     public static final Item SUNFLOWER_SEED_PACKET;
     public static final Item PEA;
+    public static final Item SUN;
 
     public static void init() {
         ModCore.LOGGER.info("Items initialization");
@@ -31,5 +32,6 @@ public class ModItems {
         EMPTY_SEED_PACKET = register("empty_seed_packet", new Item(new Item.Settings()));
         SUNFLOWER_SEED_PACKET = register("sunflower_seed_packet", new SeedPacketItem(ModEntities.SUNFLOWER_ENTITY, new Item.Settings()));
         PEA = register("pea", new PeaItem(new Item.Settings()));
+        SUN = register("sun", new Item(new Item.Settings()));
     }
 }

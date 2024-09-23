@@ -45,5 +45,11 @@
       "apvz:splat2",
       "apvz:splat3"
     ]
+  },
+  "sun_drop": {
+    "subtitles": "apvz.sun_drop",
+    "sounds": [
+      "apvz:sun_drop"
+    ]
   }
 }
