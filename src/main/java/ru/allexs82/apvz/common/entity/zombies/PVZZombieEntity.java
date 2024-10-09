@@ -20,8 +20,9 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
 import ru.allexs82.apvz.core.ModSounds;
+import software.bernie.geckolib.animatable.GeoEntity;
 
-public abstract class PVZZombieEntity extends HostileEntity {
+public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 

@@ -8,6 +8,6 @@ public class ModClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModCore.LOGGER.info("Client initialization");
         ModModelLayers.init();
-        ModEntitiesRenders.init();
+        ModEntityRenders.init();
     }
 }
