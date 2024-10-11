@@ -8,14 +8,17 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import ru.allexs82.apvz.common.entity.plants.PeashooterEntity;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.common.entity.plants.SunflowerEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 
 public class ModEntities {
     public static final EntityType<PeaEntity> PEA_ENTITY;
+
     public static final EntityType<BasicZombieEntity> BASIC_ZOMBIE_ENTITY;
 
+    public static final EntityType<PeashooterEntity> PEASHOOTER_ENTITY;
     public static final EntityType<SunflowerEntity> SUNFLOWER_ENTITY;
 
     public static void init() {
@@ -25,6 +28,7 @@ public class ModEntities {
     private static void initEntitiesAttributes() {
         FabricDefaultAttributeRegistry.register(BASIC_ZOMBIE_ENTITY, BasicZombieEntity.createBasicZombieEntityAttributes());
 
+        FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
         FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
     }
 
@@ -44,6 +48,10 @@ public class ModEntities {
 
         SUNFLOWER_ENTITY = register("sunflower", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SunflowerEntity::new)
+                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+
+        PEASHOOTER_ENTITY = register("peashooter", FabricEntityTypeBuilder
+                .create(SpawnGroup.MISC, PeashooterEntity::new)
                 .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
     }
 }

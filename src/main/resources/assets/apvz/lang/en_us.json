@@ -21,5 +21,6 @@
 
   "entity.apvz.basic_zombie": "Zombie",
 
+  "entity.apvz.peashooter": "Peashooter",
   "entity.apvz.sunflower": "Sunflower"
 }

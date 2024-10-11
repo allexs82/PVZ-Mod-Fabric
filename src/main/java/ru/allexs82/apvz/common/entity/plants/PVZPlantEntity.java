@@ -3,6 +3,7 @@ package ru.allexs82.apvz.common.entity.plants;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.damage.DamageSource;
@@ -12,16 +13,19 @@ import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
 import ru.allexs82.apvz.core.ModSounds;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public abstract class PVZPlantEntity extends PathAwareEntity {
+public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final boolean aquatic;
     private final boolean defensive;
 
@@ -64,7 +68,7 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
     @Override
     public void onDeath(DamageSource damageSource) {
         if (damageSource.getAttacker() instanceof PVZZombieEntity) {
-            this.getWorld().playSound(null, this.getBlockPos(), ModSounds.GULP, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            this.playSound(ModSounds.GULP, 1.0F, 1.0F);
         }
         super.onDeath(damageSource);
     }
@@ -72,6 +76,11 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
     @Override
     public boolean canBreatheInWater() {
         return this.isAquatic();
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     @Override
@@ -91,6 +100,7 @@ public abstract class PVZPlantEntity extends PathAwareEntity {
 
     @Override
     protected void initGoals() {
+        this.goalSelector.add(6, new LookAroundGoal(this));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 16f));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PVZZombieEntity.class, 16f));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PVZPlantEntity.class, 16f));

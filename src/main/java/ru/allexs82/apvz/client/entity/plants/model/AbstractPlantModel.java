@@ -11,7 +11,7 @@ public abstract class AbstractPlantModel<T extends PVZPlantEntity> extends Singl
     public void setAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         getPart().traverse().forEach(ModelPart::resetTransform);
         if (getHead() == null) return;
-        HeadRotationUtil.setHeadAngles(netHeadYaw, headPitch, getHead());
+        //HeadRotationUtil.setHeadAngles(netHeadYaw, headPitch, getHead());
     }
 
     @Nullable

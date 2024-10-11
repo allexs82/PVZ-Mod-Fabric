@@ -10,11 +10,18 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
+import ru.allexs82.apvz.utils.TicksConversionUtil;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.concurrent.TimeUnit;
 
 public class SunflowerEntity extends PVZPlantEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final String TICKS_UNTIL_SUN_DROP_KEY = "TicksUntilSunDrop";
-    private static final int MIN_TICKS_UNTIL_SUN_DROP = 3600; // 3 minutes
-    private static final int MAX_TICKS_UNTIL_SUN_DROP = 5400; // 4.5 minutes
+    private static final int MIN_TICKS_UNTIL_SUN_DROP = TicksConversionUtil.convert(3f, TimeUnit.MINUTES);
+    private static final int MAX_TICKS_UNTIL_SUN_DROP = TicksConversionUtil.convert(4.5f, TimeUnit.MINUTES);
     private int ticksUntilSunDrop = MAX_TICKS_UNTIL_SUN_DROP;
 
     public SunflowerEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
@@ -50,5 +57,15 @@ public class SunflowerEntity extends PVZPlantEntity {
         if (nbt.contains(TICKS_UNTIL_SUN_DROP_KEY)) {
             ticksUntilSunDrop = nbt.getInt(TICKS_UNTIL_SUN_DROP_KEY);
         }
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }
