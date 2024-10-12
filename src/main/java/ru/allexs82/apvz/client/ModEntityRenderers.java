@@ -2,12 +2,12 @@ package ru.allexs82.apvz.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import ru.allexs82.apvz.client.entity.plants.renderer.PeashooterRenderer;
-import ru.allexs82.apvz.client.entity.plants.renderer.SunflowerRenderer;
-import ru.allexs82.apvz.client.entity.zombies.renderer.BasicZombieRenderer;
+import ru.allexs82.apvz.client.entity.plants.renderers.PeashooterRenderer;
+import ru.allexs82.apvz.client.entity.plants.renderers.SunflowerRenderer;
+import ru.allexs82.apvz.client.entity.zombies.renderers.BasicZombieRenderer;
 import ru.allexs82.apvz.core.ModEntities;
 
-public class ModEntityRenders {
+public class ModEntityRenderers {
     public static void init() {
         EntityRendererRegistry.register(ModEntities.PEA_ENTITY, FlyingItemEntityRenderer::new);
 

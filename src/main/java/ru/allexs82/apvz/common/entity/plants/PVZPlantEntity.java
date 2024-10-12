@@ -2,12 +2,10 @@ package ru.allexs82.apvz.common.entity.plants;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -68,7 +66,7 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
     @Override
     public void onDeath(DamageSource damageSource) {
         if (damageSource.getAttacker() instanceof PVZZombieEntity) {
-            this.playSound(ModSounds.GULP, 1.0F, 1.0F);
+            this.playSound(ModSounds.GULP, 0.6F, 1.0F);
         }
         super.onDeath(damageSource);
     }

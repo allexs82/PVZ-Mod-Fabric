@@ -1,22 +1,17 @@
-package ru.allexs82.apvz.client.entity.zombies.renderer;
+package ru.allexs82.apvz.client.entity.zombies.renderers;
 
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import ru.allexs82.apvz.client.entity.zombies.model.BasicZombieModel;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 import ru.allexs82.apvz.core.ModCore;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class BasicZombieRenderer extends GeoEntityRenderer<BasicZombieEntity> {
-    public BasicZombieRenderer(EntityRendererFactory.Context renderManager) {
-        super(renderManager, new BasicZombieModel());
-    }
 
-    @Override
-    public Identifier getTextureLocation(BasicZombieEntity animatable) {
-        return ModCore.id("textures/entity/zombies/basic_zombie.png");
+    public BasicZombieRenderer(EntityRendererFactory.Context renderManager) {
+        super(renderManager, new DefaultedEntityGeoModel<>(ModCore.id("zombies/basic_zombie"), true));
     }
 
     @Override

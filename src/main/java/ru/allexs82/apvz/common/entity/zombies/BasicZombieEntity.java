@@ -6,21 +6,16 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.core.ModSounds;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import ru.allexs82.apvz.utils.TickConvertor;
+import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
 public class BasicZombieEntity extends PVZZombieEntity {
-    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-
     public BasicZombieEntity(EntityType<? extends PVZZombieEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -39,40 +34,20 @@ public class BasicZombieEntity extends PVZZombieEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "stand", 8, this::standingAnimation));
-        controllers.add(new AnimationController<>(this, "walk", 8, this::walkingAnimation));
-        controllers.add(new AnimationController<>(this, "attack", 8, this::attackAnimation));
-    }
-
-    private PlayState attackAnimation(AnimationState<BasicZombieEntity> animationState) {
-        if (!this.isAttacking()) return PlayState.STOP;
-        animationState.setAnimation(RawAnimation.begin().thenPlay("attack"));
-        return PlayState.CONTINUE;
-    }
-
-    private PlayState standingAnimation(AnimationState<BasicZombieEntity> animationState) {
-        if (this.isAttacking()) return PlayState.STOP;
-        animationState.setAnimation(RawAnimation.begin().thenLoop("standing"));
-        return PlayState.CONTINUE;
-    }
-
-    private PlayState walkingAnimation(AnimationState<BasicZombieEntity> animationState) {
-        if (animationState.isMoving() && !this.isAttacking()) {
-            animationState.getController().setAnimation(
-                    RawAnimation.begin().thenLoop("walk"));
-            return PlayState.CONTINUE;
-        }
-        return PlayState.STOP;
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+        controllers.add(
+                DefaultAnimations.genericWalkIdleController(this),
+                new AnimationController<>(this, "Attack", state -> {
+                    if (this.isAttacking()) {
+                        return state.setAndContinue(DefaultAnimations.ATTACK_BITE);
+                    }
+                    return PlayState.STOP;
+                })
+        );
     }
 
     private static class AttackGoal extends MeleeAttackGoal {
-        private static final int FIRST_ATTACK_DELAY = 10;
-        private static final int ATTACK_DELAY = 20;
+        private static final int FIRST_ATTACK_DELAY = TickConvertor.seconds(0.5f);
+        private static final int ATTACK_DELAY = TickConvertor.seconds(1f);
 
         private final BasicZombieEntity zombie;
         private int attackDelay = FIRST_ATTACK_DELAY;
@@ -87,8 +62,8 @@ public class BasicZombieEntity extends PVZZombieEntity {
         @Override
         public void start() {
             super.start();
-            this.attackDelay = 10;
-            this.ticksUntilNextAttack = 10;
+            this.attackDelay = FIRST_ATTACK_DELAY;
+            this.ticksUntilNextAttack = FIRST_ATTACK_DELAY;
         }
 
         @Override
@@ -101,22 +76,21 @@ public class BasicZombieEntity extends PVZZombieEntity {
 
         @Override
         public void stop() {
-            zombie.setAttacking(false);
+            this.zombie.setAttacking(false);
             super.stop();
         }
 
         @Override
         protected void attack(LivingEntity target) {
             if (isEnemyWithinAttackDistance(target)) {
-                shouldCountUntilNextAttack = true;
-                zombie.setAttacking(true);
-                if (isTimeToAttack()) {
-                    zombie.attackAnimationCooldown = 0;
+                this.shouldCountUntilNextAttack = true;
+                this.zombie.setAttacking(true);
+                if (this.isTimeToAttack()) {
                     this.mob.getLookControl().lookAt(target);
-                    performAttack(target);
+                    this.performAttack(target);
                 }
             } else {
-                reset();
+                this.reset();
             }
         }
 
@@ -132,15 +106,14 @@ public class BasicZombieEntity extends PVZZombieEntity {
             this.ticksUntilNextAttack = ATTACK_DELAY;
             this.mob.swingHand(Hand.MAIN_HAND);
             this.mob.tryAttack(pEnemy);
-            this.mob.getWorld().playSound(null, this.mob.getBlockPos(), ModSounds.ZOMBIE_CHOMP, SoundCategory.HOSTILE, 0.5F, 1.0F);
+            this.mob.playSound(ModSounds.ZOMBIE_CHOMP, 0.2F, 1.0F);
             this.reset();
         }
 
         private void reset() {
-            shouldCountUntilNextAttack = false;
-            attackDelay = ticksUntilNextAttack;
-            zombie.setAttacking(false);
-            zombie.attackAnimationCooldown = 0;
+            this.shouldCountUntilNextAttack = false;
+            this.attackDelay = this.ticksUntilNextAttack;
+            this.zombie.setAttacking(false);
         }
     }
 }

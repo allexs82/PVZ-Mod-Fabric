@@ -1,12 +1,7 @@
 package ru.allexs82.apvz.common.entity.zombies;
 
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.ActiveTargetGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.RevengeGoal;
-import net.minecraft.entity.ai.goal.WanderAroundGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -21,27 +16,17 @@ import org.jetbrains.annotations.Nullable;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
 import ru.allexs82.apvz.core.ModSounds;
 import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-    public final AnimationState idleAnimationState = new AnimationState();
-    protected int idleAnimationCooldown = 0;
-
-    public final AnimationState attackAnimationState = new AnimationState();
-    protected int attackAnimationCooldown = 0;
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     protected PVZZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (this.getWorld().isClient) {
-            updateAnimations();
-        }
     }
 
     public boolean isAttacking() {
@@ -50,6 +35,11 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
 
     public void setAttacking(boolean attacking) {
         this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     @Override
@@ -65,7 +55,8 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new WanderAroundGoal(this, 1D));
-        this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
+        this.goalSelector.add(6, new LookAroundGoal(this));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
 
         this.targetSelector.add(1, new RevengeGoal(this, PVZZombieEntity.class));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZPlantEntity.class, true));
@@ -82,28 +73,5 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(ATTACKING, false);
-    }
-
-    @Override
-    protected void updateLimbs(float posDelta) {
-        float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0F, 1.0F) : 0.0f;
-        this.limbAnimator.updateLimbs(f, 0.2F);
-    }
-
-    private void updateAnimations() {
-        if (--this.idleAnimationCooldown <= 0) {
-            this.idleAnimationCooldown = this.random.nextInt(40) + 80;
-            this.idleAnimationState.start(this.age);
-        }
-
-        if (--this.attackAnimationCooldown <= 0 && isAttacking()) {
-            this.attackAnimationCooldown = 20;
-            this.attackAnimationState.start(this.age);
-        }
-
-        if (!this.isAttacking()) {
-            this.attackAnimationCooldown = 0;
-            this.attackAnimationState.stop();
-        }
     }
 }

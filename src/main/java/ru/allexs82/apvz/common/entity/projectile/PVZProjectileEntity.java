@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -75,7 +74,7 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
             Entity entity = entityHitResult.getEntity();
             if (entity instanceof PVZPlantEntity || entity instanceof PlayerEntity) return;
         }
-        this.getWorld().playSound(null, this.getBlockPos(), getHitSound(), SoundCategory.NEUTRAL, 0.5f, 1.0f);
+        this.playSound(getHitSound(), 0.5f, 1.0f);
         if (!this.getWorld().isClient) {
             this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();

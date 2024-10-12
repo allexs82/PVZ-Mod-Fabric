@@ -58,11 +58,11 @@ public class SeedPacketItem extends SpawnEggItem {
         } else {
             BlockState blockState = context.getWorld().getBlockState(pos);
             if (canPlantOnTop(blockState)) {
-                context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.5f, 1.0f);
+                context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.2f, 1.0f);
                 return super.useOnBlock(context);
             } else if (canReplaceGrass(context)) {
                 context.getWorld().setBlockState(pos, Blocks.AIR.getDefaultState());
-                context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.5f, 1.0f);
+                context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.2f, 1.0f);
                 return super.useOnBlock(context);
             }
         }
