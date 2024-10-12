@@ -15,6 +15,7 @@ public class ModCore implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
 		ModItems.init();
+		ModItemGroups.init();
 		ModCommands.init();
 		ModEntities.init();
 		ModSounds.init();

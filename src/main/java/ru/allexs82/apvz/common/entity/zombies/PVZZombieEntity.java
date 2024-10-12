@@ -48,15 +48,10 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return super.getHurtSound(source);
-    }
-
-    @Override
     protected void initGoals() {
-        this.goalSelector.add(1, new WanderAroundGoal(this, 1D));
-        this.goalSelector.add(6, new LookAroundGoal(this));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
+        this.goalSelector.add(5, new LookAroundGoal(this));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
+        this.goalSelector.add(6, new WanderAroundGoal(this, 1D));
 
         this.targetSelector.add(1, new RevengeGoal(this, PVZZombieEntity.class));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZPlantEntity.class, true));
