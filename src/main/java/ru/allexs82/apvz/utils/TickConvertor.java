@@ -5,7 +5,19 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class TicksConversionUtil {
+public abstract class TickConvertor {
+
+    public static int seconds(float value) {
+        return convert(value, TimeUnit.SECONDS);
+    }
+
+    public static int minutes(float value) {
+        return convert(value, TimeUnit.MINUTES);
+    }
+
+    public static int hours(float value) {
+        return convert(value, TimeUnit.HOURS);
+    }
 
     /**
      * Converts the given time unit to Minecraft ticks.
