@@ -35,7 +35,7 @@ public class SunflowerEntity extends PVZPlantEntity {
             this.ticksUntilSunDrop = this.random.nextBetween(MIN_TICKS_UNTIL_SUN_DROP, MAX_TICKS_UNTIL_SUN_DROP);
             ItemStack sun = new ItemStack(ModItems.SUN, this.random.nextBetween(1, 3));
             this.dropStack(sun);
-            this.playSound(ModSounds.SUN_DROP, 1.0F, 1.2f - this.random.nextInt(4) / 10.0f);
+            this.playSound(ModSounds.SUN_DROP, 0.4F, 1.2f - this.random.nextInt(4) / 10.0f);
         }
     }
 

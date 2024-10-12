@@ -32,7 +32,10 @@
 		"fabricloader": ">=0.16.5",
 		"minecraft": "~1.20.2",
 		"java": ">=17",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"geckolib": ">=4.3.1",
+		"cardinal-components-base": "5.3.0",
+		"cardinal-components-entity": "5.3.0"
 	},
 	"custom": {
 		"cardinal-components": [
