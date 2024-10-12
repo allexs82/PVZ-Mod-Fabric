@@ -7,11 +7,9 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
-import ru.allexs82.apvz.utils.TicksConversionUtil;
+import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
-
-import java.util.concurrent.TimeUnit;
 
 public class PeashooterEntity extends AbstractRangedAttackPlant {
     public PeashooterEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
@@ -26,8 +24,7 @@ public class PeashooterEntity extends AbstractRangedAttackPlant {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.getSpawnController(this,
-                        state -> this, TicksConversionUtil.convert(2, TimeUnit.SECONDS)),
+                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2)),
                 DefaultAnimations.genericIdleController(this)
         );
     }
