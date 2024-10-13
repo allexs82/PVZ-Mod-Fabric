@@ -71,7 +71,7 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
         boolean success = super.addStatusEffect(effect, source);
         if (success && effect.getEffectType() == StatusEffects.SLOWNESS) {
             this.setZombieFrozen(true);
-            zombieFrozenCountdown = effect.getDuration() == -1 ? Integer.MAX_VALUE : effect.getDuration();
+            zombieFrozenCountdown = effect.isInfinite() ? Integer.MAX_VALUE : effect.getDuration();
         }
         return success;
     }
