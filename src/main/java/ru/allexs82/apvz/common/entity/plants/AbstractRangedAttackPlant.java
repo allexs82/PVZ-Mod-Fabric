@@ -34,7 +34,7 @@ public abstract class AbstractRangedAttackPlant extends PVZPlantEntity implement
         double velocityModifier = Math.sqrt(distanceX * distanceX + distanceZ * distanceZ) * 0.2F;
         projectile.setVelocity(distanceX, distanceY + velocityModifier, distanceZ, 1.6F, 2.0F);
 
-        this.playSound(ModSounds.PROJECTILE_THROWN, 1.0F, 1.0F);
+        this.playSound(ModSounds.PROJECTILE_THROWN, 0.6F, 1.0F);
         this.getWorld().spawnEntity(projectile);
     }
 

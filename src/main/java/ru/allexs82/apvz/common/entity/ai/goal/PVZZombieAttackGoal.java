@@ -31,7 +31,7 @@ public class PVZZombieAttackGoal extends MeleeAttackGoal {
     @Override
     public void start() {
         super.start();
-        this.currentAttackDelay = firstAttackDelay;
+        this.resetAttackState();
         this.ticksUntilNextAttack = firstAttackDelay;
     }
 
@@ -45,13 +45,13 @@ public class PVZZombieAttackGoal extends MeleeAttackGoal {
 
     @Override
     public void stop() {
-        this.zombie.setAttacking(false);
+        this.resetAttackState();
         super.stop();
     }
 
     @Override
     protected void attack(LivingEntity target) {
-        if (isEnemyWithinAttackDistance(target)) {
+        if (this.isEnemyWithinAttackDistance(target)) {
             this.shouldCountUntilNextAttack = true;
             this.zombie.setAttacking(true);
             if (this.isTimeToAttack()) {
@@ -59,7 +59,7 @@ public class PVZZombieAttackGoal extends MeleeAttackGoal {
                 this.performAttack(target);
             }
         } else {
-            this.reset();
+            resetAttackState();
         }
     }
 
@@ -75,13 +75,17 @@ public class PVZZombieAttackGoal extends MeleeAttackGoal {
         this.ticksUntilNextAttack = defaultAttackDelay;
         this.mob.swingHand(Hand.MAIN_HAND);
         this.mob.tryAttack(pEnemy);
-        this.mob.playSound(ModSounds.ZOMBIE_CHOMP, 0.2F, 1.0F);
-        this.reset();
+        this.playAttackSound();
+        this.resetAttackState();
     }
 
-    private void reset() {
+    private void resetAttackState() {
         this.shouldCountUntilNextAttack = false;
         this.currentAttackDelay = this.ticksUntilNextAttack;
         this.zombie.setAttacking(false);
+    }
+
+    private void playAttackSound() {
+        this.mob.playSound(ModSounds.ZOMBIE_CHOMP, 0.2F, 1.0F);
     }
 }

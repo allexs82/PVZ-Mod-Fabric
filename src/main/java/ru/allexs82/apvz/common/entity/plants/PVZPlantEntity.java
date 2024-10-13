@@ -2,10 +2,12 @@ package ru.allexs82.apvz.common.entity.plants;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -112,18 +114,25 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
 
     protected void initCustomGoals() {}
 
+    /**
+     * If you place 2 plants on top of each other, they will both be damaged.
+     * But if the plant is defensive, it can be planted on to another non-defensive plant.
+     * But if a defensive plant is on the same block as another defensive plant or there is 3 or more plants, they all will be damaged.
+     */
     @Override
     protected void tickCramming() {
         if (this.getWorld().isClient) return;
+
+        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox(), entity -> entity instanceof PVZPlantEntity);
+        if (list.isEmpty()) return;
+
         int crammingResistance = this.isDefensive() ? 1 : 0;
-        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox());
-        if (!list.isEmpty()) {
-            for (Entity entity : list) {
-                if (entity instanceof PVZPlantEntity plant) {
-                    crammingResistance = this.isDefensive() && plant.isDefensive() ? crammingResistance - 2 : crammingResistance - 1;
-                    if (crammingResistance < 0) this.damage(this.getWorld().getDamageSources().cramming(), 6f);
-                }
-            }
+        for (Entity entity : list) {
+            PVZPlantEntity plant = (PVZPlantEntity) entity;
+
+            crammingResistance = this.isDefensive() && plant.isDefensive() ? crammingResistance - 2 : crammingResistance - 1;
+            if (crammingResistance < 0)
+                this.damage(this.getWorld().getDamageSources().cramming(), 6f);
         }
     }
 }

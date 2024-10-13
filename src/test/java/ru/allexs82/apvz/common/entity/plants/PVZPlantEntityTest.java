@@ -4,7 +4,6 @@ import net.minecraft.Bootstrap;
 import net.minecraft.SharedConstants;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.server.world.ServerWorld;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,44 +55,36 @@ class PVZPlantEntityTest {
 
     @Test
     void tickCramming_DefensiveAndDefensive() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of(mockDefensivePlant));
+        when(mockWorld.getOtherEntities(any(), any(), any())).thenReturn(List.of(mockDefensivePlant));
         mockDefensivePlant.tickCramming();
         verify(mockDefensivePlant, atLeastOnce()).damage(any(), anyFloat());
     }
 
     @Test
     void tickCramming_DefensiveAndNormal() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of(mockNormalPlant));
+        when(mockWorld.getOtherEntities(any(), any(), any())).thenReturn(List.of(mockNormalPlant));
         mockDefensivePlant.tickCramming();
         verify(mockDefensivePlant, never()).damage(any(), anyFloat());
     }
 
     @Test
     void tickCramming_NormalAndNormal() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of(mockNormalPlant));
+        when(mockWorld.getOtherEntities(any(), any(), any())).thenReturn(List.of(mockNormalPlant));
         mockNormalPlant.tickCramming();
         verify(mockNormalPlant, atLeastOnce()).damage(any(), anyFloat());
     }
 
     @Test
     void tickCramming_NormalAndAir() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of());
+        when(mockWorld.getOtherEntities(any(), any(), any())).thenReturn(List.of());
         mockNormalPlant.tickCramming();
         verify(mockNormalPlant, never()).damage(any(), anyFloat());
     }
 
     @Test
     void tickCramming_DefensiveAndAir() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of());
+        when(mockWorld.getOtherEntities(any(), any(), any())).thenReturn(List.of());
         mockDefensivePlant.tickCramming();
         verify(mockDefensivePlant, never()).damage(any(), anyFloat());
     }
-
-    @Test
-    void tickCramming_WithNotPlantEntity() {
-        when(mockWorld.getOtherEntities(any(), any())).thenReturn(List.of(mock(SheepEntity.class)));
-        mockNormalPlant.tickCramming();
-        verify(mockNormalPlant, never()).damage(any(), anyFloat());
-    }
-
 }

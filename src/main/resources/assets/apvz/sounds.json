@@ -34,8 +34,8 @@
   "projectile_thrown": {
     "subtitles": "apvz.projectile_thrown",
     "sounds": [
-      "apvz:thrown",
-      "apvz:thrown2"
+      "apvz:throw",
+      "apvz:throw2"
     ]
   },
   "splat": {

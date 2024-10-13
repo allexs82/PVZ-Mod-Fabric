@@ -12,9 +12,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
 
 public abstract class PVZProjectileEntity extends ThrownItemEntity {
+
     public PVZProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -23,45 +25,39 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
         super(entityType, owner, world);
     }
 
-    protected SoundEvent getHitSound() {
-        return null;
+    @Override
+    public void handleStatus(byte status) {
+        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
+            double d = 0.08;
+            for (int i = 0; i < 8; i++) {
+                this.getWorld().addParticle(
+                        new ItemStackParticleEffect(ParticleTypes.ITEM, this.getStack()),
+                        this.getX(),
+                        this.getY(),
+                        this.getZ(),
+                        ((double) this.random.nextFloat() - 0.5) * d,
+                        ((double) this.random.nextFloat() - 0.5) * d,
+                        ((double) this.random.nextFloat() - 0.5) * d
+                );
+            }
+        }
     }
 
-    protected int getDamage() {
-        return 0;
-    }
+    protected abstract @NotNull SoundEvent getHitSound();
 
+    protected abstract int getDamage();
+
+    // To be overridden in subclasses, for applying status effects like slowness, poison, etc.
     protected void applyEffects(LivingEntity livingEntity) {}
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int damage = getDamage();
-        if (entity instanceof PVZPlantEntity || entity instanceof PlayerEntity || this.getOwner() instanceof PlayerEntity)
-            damage = 0;
-        entity.damage(this.getWorld().getDamageSources().thrown(this, this.getOwner()), damage);
-        if (entity instanceof LivingEntity livingEntity && !(this.getOwner() instanceof PlayerEntity)) {
-            applyEffects(livingEntity);
-        }
-    }
-
-    @Override
-    public void handleStatus(byte status) {
-        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
-            double d = 0.08;
-
-            for (int i = 0; i < 8; i++) {
-                this.getWorld()
-                        .addParticle(
-                                new ItemStackParticleEffect(ParticleTypes.ITEM, this.getStack()),
-                                this.getX(),
-                                this.getY(),
-                                this.getZ(),
-                                ((double)this.random.nextFloat() - 0.5) * d,
-                                ((double)this.random.nextFloat() - 0.5) * d,
-                                ((double)this.random.nextFloat() - 0.5) * d
-                        );
+        if (this.shouldDealDamage(entity)) {
+            entity.damage(this.getWorld().getDamageSources().thrown(this, this.getOwner()), this.getDamage());
+            if (entity instanceof LivingEntity livingEntity && !(this.getOwner() instanceof PlayerEntity)) {
+                applyEffects(livingEntity);
             }
         }
     }
@@ -79,5 +75,9 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
             this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
         }
+    }
+
+    private boolean shouldDealDamage(Entity entity) {
+        return !(entity instanceof PVZPlantEntity || entity instanceof PlayerEntity || this.getOwner() instanceof PlayerEntity);
     }
 }
