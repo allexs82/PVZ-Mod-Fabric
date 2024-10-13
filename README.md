@@ -13,6 +13,7 @@
 ## Requirements
 To run the mod, you will need:
 - **Minecraft Fabric**: version 1.20.2
+- **Fabric loader**: version 0.16.5 or higher
 - **[Fabric API](https://modrinth.com/mod/fabric-api)**: compatible with 1.20.2
 - **[GeckoLib](https://modrinth.com/mod/geckolib)**: version 4.3.1
 - **[Cardinal Components](https://modrinth.com/mod/cardinal-components-api)**: version 5.3.0
