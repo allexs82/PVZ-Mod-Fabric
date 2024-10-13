@@ -30,9 +30,9 @@ public abstract class TickConvertor {
     @Contract(pure = true)
     public static int convert(float value, @NotNull TimeUnit timeUnit) {
         return switch (timeUnit) {
-            case HOURS -> (int) value * 20 * 60 * 60;
-            case MINUTES -> (int) value * 20 * 60;
-            case SECONDS -> (int) value * 20;
+            case HOURS -> (int) (value * 20 * 60 * 60);
+            case MINUTES -> (int) (value * 20 * 60);
+            case SECONDS -> (int) (value * 20);
             default -> throw new UnsupportedOperationException("Unsupported time unit: " + timeUnit);
         };
     }
