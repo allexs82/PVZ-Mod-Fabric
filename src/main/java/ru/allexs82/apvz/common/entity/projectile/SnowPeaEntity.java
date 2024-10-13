@@ -32,7 +32,7 @@ public class SnowPeaEntity extends PVZProjectileEntity {
             this.playSound(ModSounds.FREEZE, 0.4f, 1.0f);
         }
         StatusEffectInstance slowness =
-                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, true);
+                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, false);
         livingEntity.addStatusEffect(slowness);
     }
 

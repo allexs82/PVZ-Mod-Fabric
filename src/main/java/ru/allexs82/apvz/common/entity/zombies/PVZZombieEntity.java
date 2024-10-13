@@ -1,11 +1,13 @@
 package ru.allexs82.apvz.common.entity.zombies;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -22,6 +24,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> FREEZES =
+            DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private int freezesCountdown = -1;
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
@@ -37,9 +42,38 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
         this.dataTracker.set(ATTACKING, attacking);
     }
 
+    public boolean isFreezes() {
+        return this.dataTracker.get(FREEZES);
+    }
+
+    public void setFreezes(boolean freezes) {
+        this.dataTracker.set(FREEZES, freezes);
+    }
+
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (freezesCountdown > 0 && this.getStatusEffect(StatusEffects.SLOWNESS) == null) {
+            setFreezes(false);
+            freezesCountdown = -1;
+        } else if (--freezesCountdown == 0) {
+            setFreezes(false);
+        }
+    }
+
+    @Override
+    public boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source) {
+        boolean success = super.addStatusEffect(effect, source);
+        if (success && effect.getEffectType() == StatusEffects.SLOWNESS) {
+            this.setFreezes(true);
+            freezesCountdown = effect.getDuration() == -1 ? Integer.MAX_VALUE : effect.getDuration();
+        }
+        return success;
     }
 
     @Override
@@ -68,5 +102,6 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(ATTACKING, false);
+        this.dataTracker.startTracking(FREEZES, false);
     }
 }

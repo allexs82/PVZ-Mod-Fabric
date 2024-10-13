@@ -26,8 +26,8 @@ public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.genericIdleController(this),
-                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2))
+                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2)),
+                DefaultAnimations.genericIdleController(this)
         );
     }
 
