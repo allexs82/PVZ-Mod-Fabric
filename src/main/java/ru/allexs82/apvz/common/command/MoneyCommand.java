@@ -1,5 +1,6 @@
 package ru.allexs82.apvz.common.command;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -12,8 +13,8 @@ import ru.allexs82.apvz.core.ModComponents;
 
 import java.util.Collection;
 
-import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
 
 public class MoneyCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -23,11 +24,12 @@ public class MoneyCommand {
                         .then(literal("get")
                                 .then(argument("target", EntityArgumentType.player())
                                         .executes(context -> executeGet(context, EntityArgumentType.getPlayer(context, "target"))))
+                                .executes(ctx -> executeGet(ctx, ctx.getSource().getPlayer()))
                         )
                         .then(literal("set")
                                 .then(argument("targets", EntityArgumentType.players())
-                                        .then(argument("money", IntegerArgumentType.integer(0))
-                                                .executes(context -> executeSet(context, EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "money")))))
+                                        .then(argument("amount", IntegerArgumentType.integer(0))
+                                                .executes(context -> executeSet(context, EntityArgumentType.getPlayers(context, "targets"), IntegerArgumentType.getInteger(context, "amount")))))
                         )
         );
     }
@@ -38,8 +40,8 @@ public class MoneyCommand {
             context.getSource().sendError(Text.translatable("command.money.get.error"));
             return 0;
         }
-        context.getSource().sendFeedback(() -> Text.translatable("command.money.get.success", target.getDisplayName(), moneyComponent.getMoney()), true);
-        return 1;
+        context.getSource().sendFeedback(() -> Text.translatable("command.money.get.success", target.getDisplayName(), moneyComponent.getMoney()), false);
+        return Command.SINGLE_SUCCESS;
     }
 
     private static int executeSet(CommandContext<ServerCommandSource> context, Collection<ServerPlayerEntity> targets, int money) {

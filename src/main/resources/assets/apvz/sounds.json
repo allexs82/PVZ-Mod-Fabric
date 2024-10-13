@@ -51,5 +51,11 @@
     "sounds": [
       "apvz:sun_drop"
     ]
+  },
+  "freeze": {
+    "subtitles": "apvz.freeze",
+    "sounds": [
+      "apvz:frozen"
+    ]
   }
 }

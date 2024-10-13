@@ -5,8 +5,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
-import ru.allexs82.apvz.core.ModCore;
 import ru.allexs82.apvz.core.ModSounds;
 import ru.allexs82.apvz.utils.TickConvertor;
 
@@ -21,11 +22,7 @@ public abstract class AbstractRangedAttackPlant extends PVZPlantEntity implement
 
     @Override
     public void shootAt(LivingEntity target, float pullProgress) {
-        PVZProjectileEntity projectile = this.getProjectile();
-        if (projectile == null) {
-            ModCore.LOGGER.error("AbstractRangedAttackPlant#shootAt: Projectile is null for {}", this.getDefaultName());
-            return;
-        }
+        PVZProjectileEntity projectile = this.createProjectile();
 
         double targetEyeY = target.getEyeY() - 1.1F;
         double distanceX = target.getX() - this.getX();
@@ -43,7 +40,8 @@ public abstract class AbstractRangedAttackPlant extends PVZPlantEntity implement
         this.goalSelector.add(0, new ProjectileAttackGoal(this, 0.0D, this.getAttackDelayTicks(), this.getAttackRange()));
     }
 
-    protected abstract PVZProjectileEntity getProjectile();
+    @Contract(value = "-> new", pure = true)
+    protected abstract @NotNull PVZProjectileEntity createProjectile();
 
     protected int getAttackDelayTicks() {
         return TickConvertor.seconds(1);

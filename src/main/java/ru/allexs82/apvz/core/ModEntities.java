@@ -9,17 +9,21 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import ru.allexs82.apvz.common.entity.plants.PeashooterEntity;
+import ru.allexs82.apvz.common.entity.plants.SnowPeashooterEntity;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.common.entity.plants.SunflowerEntity;
+import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 
 public class ModEntities {
     public static final EntityType<PeaEntity> PEA_ENTITY;
+    public static final EntityType<SnowPeaEntity> SNOW_PEA_ENTITY;
 
     public static final EntityType<BasicZombieEntity> BASIC_ZOMBIE_ENTITY;
 
     public static final EntityType<PeashooterEntity> PEASHOOTER_ENTITY;
     public static final EntityType<SunflowerEntity> SUNFLOWER_ENTITY;
+    public static final EntityType<SnowPeashooterEntity> SNOW_PEASHOOTER_ENTITY;
 
     public static void init() {
         initEntitiesAttributes();
@@ -30,6 +34,7 @@ public class ModEntities {
 
         FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
         FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
+        FabricDefaultAttributeRegistry.register(SNOW_PEASHOOTER_ENTITY, SnowPeashooterEntity.createDefaultSnowPeashooterAttributes());
     }
 
     private static <T extends Entity> EntityType<T> register(String id, EntityType<T> entityType) {
@@ -39,6 +44,11 @@ public class ModEntities {
     static {
         PEA_ENTITY = register("pea_entity", FabricEntityTypeBuilder
                 .<PeaEntity>create(SpawnGroup.MISC, PeaEntity::new)
+                .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                .trackRangeChunks(4).build());
+
+        SNOW_PEA_ENTITY = register("snow_pea_entity", FabricEntityTypeBuilder
+                .<SnowPeaEntity>create(SpawnGroup.MISC, SnowPeaEntity::new)
                 .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                 .trackRangeChunks(4).build());
 
@@ -52,6 +62,10 @@ public class ModEntities {
 
         PEASHOOTER_ENTITY = register("peashooter", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, PeashooterEntity::new)
+                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+
+        SNOW_PEASHOOTER_ENTITY = register("snow_peashooter", FabricEntityTypeBuilder
+                .create(SpawnGroup.MISC, SnowPeashooterEntity::new)
                 .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
     }
 }

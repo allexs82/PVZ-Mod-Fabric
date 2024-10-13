@@ -4,9 +4,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.core.ModEntities;
 import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
@@ -21,8 +20,8 @@ public class PeaEntity extends PVZProjectileEntity {
     }
 
     @Override
-    protected @NotNull SoundEvent getHitSound() {
-        return ModSounds.SPLAT;
+    protected void playHitSound(HitResult hitResult) {
+        this.playSound(ModSounds.SPLAT, 0.4f, 1.0f);
     }
 
     @Override

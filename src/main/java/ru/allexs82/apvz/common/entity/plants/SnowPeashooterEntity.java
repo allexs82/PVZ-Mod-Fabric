@@ -7,17 +7,18 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
-import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
+import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
-public class PeashooterEntity extends AbstractRangedAttackPlant {
-    public PeashooterEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
+
+    public SnowPeashooterEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultPeashooterAttributes() {
+    public static DefaultAttributeContainer.Builder createDefaultSnowPeashooterAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10);
     }
@@ -25,13 +26,13 @@ public class PeashooterEntity extends AbstractRangedAttackPlant {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2)),
-                DefaultAnimations.genericIdleController(this)
+                DefaultAnimations.genericIdleController(this),
+                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2))
         );
     }
 
     @Override
     protected @NotNull PVZProjectileEntity createProjectile() {
-        return new PeaEntity(this.getWorld(), this);
+        return new SnowPeaEntity(this.getWorld(), this);
     }
 }

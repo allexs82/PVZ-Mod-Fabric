@@ -8,11 +8,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
 
 public abstract class PVZProjectileEntity extends ThrownItemEntity {
@@ -43,7 +41,7 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
         }
     }
 
-    protected abstract @NotNull SoundEvent getHitSound();
+    protected abstract void playHitSound(HitResult hitResult);
 
     protected abstract int getDamage();
 
@@ -54,11 +52,12 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        if (this.shouldDealDamage(entity)) {
-            entity.damage(this.getWorld().getDamageSources().thrown(this, this.getOwner()), this.getDamage());
-            if (entity instanceof LivingEntity livingEntity && !(this.getOwner() instanceof PlayerEntity)) {
-                applyEffects(livingEntity);
-            }
+        int damage = 0;
+        if (this.shouldDealDamage(entity))
+            damage = this.getDamage();
+        entity.damage(this.getWorld().getDamageSources().thrown(this, this.getOwner()), damage);
+        if (entity instanceof LivingEntity livingEntity) {
+            applyEffects(livingEntity);
         }
     }
 
@@ -70,14 +69,14 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
             Entity entity = entityHitResult.getEntity();
             if (entity instanceof PVZPlantEntity || entity instanceof PlayerEntity) return;
         }
-        this.playSound(getHitSound(), 0.5f, 1.0f);
+        this.playHitSound(hitResult);
         if (!this.getWorld().isClient) {
             this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
         }
     }
 
-    private boolean shouldDealDamage(Entity entity) {
+    protected boolean shouldDealDamage(Entity entity) {
         return !(entity instanceof PVZPlantEntity || entity instanceof PlayerEntity || this.getOwner() instanceof PlayerEntity);
     }
 }

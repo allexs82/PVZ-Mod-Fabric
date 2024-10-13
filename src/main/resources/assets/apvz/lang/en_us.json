@@ -16,14 +16,17 @@
   "item.apvz.empty_seed_packet": "Seed packet",
   "item.apvz.sunflower_seed_packet": "Sunflower seed packet",
   "item.apvz.pea": "Pea",
+  "item.apvz.snow_pea": "Snow pea",
   "item.apvz.sun": "Sun",
   "item.apvz.peashooter_seed_packet": "Peashooter seed packet",
   "item.apvz.basic_zombie_spawn_egg": "Zombie spawn egg",
 
   "entity.apvz.pea_entity": "Pea",
+  "entity.apvz.snow_pea_entity": "Snow pea",
 
   "entity.apvz.basic_zombie": "Zombie",
 
   "entity.apvz.peashooter": "Peashooter",
-  "entity.apvz.sunflower": "Sunflower"
+  "entity.apvz.sunflower": "Sunflower",
+  "entity.apvz.snow_peashooter": "Snow pea"
 }
