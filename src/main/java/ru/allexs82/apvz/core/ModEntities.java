@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import ru.allexs82.apvz.common.entity.plants.CherryBombEntity;
 import ru.allexs82.apvz.common.entity.plants.PeashooterEntity;
 import ru.allexs82.apvz.common.entity.plants.SnowPeashooterEntity;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
@@ -23,6 +24,7 @@ public class ModEntities {
 
     public static final EntityType<PeashooterEntity> PEASHOOTER_ENTITY;
     public static final EntityType<SunflowerEntity> SUNFLOWER_ENTITY;
+    public static final EntityType<CherryBombEntity> CHERRY_BOMB_ENTITY;
     public static final EntityType<SnowPeashooterEntity> SNOW_PEASHOOTER_ENTITY;
 
     public static void init() {
@@ -34,6 +36,7 @@ public class ModEntities {
 
         FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
         FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
+        FabricDefaultAttributeRegistry.register(CHERRY_BOMB_ENTITY, CherryBombEntity.createDefaultCherryBombAttributes());
         FabricDefaultAttributeRegistry.register(SNOW_PEASHOOTER_ENTITY, SnowPeashooterEntity.createDefaultSnowPeashooterAttributes());
     }
 
@@ -67,5 +70,9 @@ public class ModEntities {
         SNOW_PEASHOOTER_ENTITY = register("snow_peashooter", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SnowPeashooterEntity::new)
                 .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+
+        CHERRY_BOMB_ENTITY = register("cherry_bomb", FabricEntityTypeBuilder
+                .create(SpawnGroup.MISC, CherryBombEntity::new)
+                .dimensions(EntityDimensions.fixed(0.8f, 0.6f)).build());
     }
 }

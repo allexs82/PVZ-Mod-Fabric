@@ -29,7 +29,7 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
     private final boolean aquatic;
     private final boolean defensive;
 
-    protected PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+    public PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
         this(entityType, world, false, false);
     }
 

@@ -12,6 +12,6 @@ public class ModComponents implements EntityComponentInitializer {
     public static final ComponentKey<MoneyComponent> MONEY = ComponentRegistry.getOrCreate(ModCore.id("money"), MoneyComponent.class);
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.beginRegistration(PlayerEntity.class, MONEY).respawnStrategy(RespawnCopyStrategy.ALWAYS_COPY).end(MoneyComponent::new);
+        registry.beginRegistration(PlayerEntity.class, MONEY).respawnStrategy(RespawnCopyStrategy.ALWAYS_COPY).end(t -> new MoneyComponent());
     }
 }

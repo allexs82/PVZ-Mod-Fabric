@@ -57,5 +57,11 @@
     "sounds": [
       "apvz:frozen"
     ]
+  },
+  "cherry_bomb_explosion": {
+    "subtitles": "apvz.cherry_bomb_explosion",
+    "sounds": [
+      "apvz:cherry_bomb"
+    ]
   }
 }

@@ -45,6 +45,8 @@ public class ModItemGroups {
         ItemGroupEvents.modifyEntriesEvent(ALMANAC_GROUP_KEY).register(entries -> {
             entries.add(ModItems.PEASHOOTER_SEED_PACKET);
             entries.add(ModItems.SUNFLOWER_SEED_PACKET);
+            entries.add(ModItems.CHERRY_BOMB_SEED_PACKET);
+            entries.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET);
 
             entries.add(ModItems.BASIC_ZOMBIE_SPAWN_EGG);
         });
@@ -52,8 +54,9 @@ public class ModItemGroups {
 
     private static void checkNullAndAdd(Item itemToAdd, FabricItemGroupEntries entries) {
         if (itemToAdd == null) {
-            ModCore.LOGGER.error("You need to initialize ModItems BEFORE initializing ModItemGroups", new NullPointerException("itemToAdd can't be null"));
-            return;
+            NullPointerException exception = new NullPointerException("itemToAdd can't be null");
+            ModCore.LOGGER.error("You need to initialize ModItems BEFORE initializing ModItemGroups", exception);
+            throw exception;
         }
 
         entries.add(itemToAdd);

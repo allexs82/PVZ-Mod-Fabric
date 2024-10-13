@@ -1,15 +1,12 @@
 package ru.allexs82.apvz.common.cca;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 
 public class MoneyComponent implements AutoSyncedComponent {
-    private final PlayerEntity player;
     private int money = 0;
 
-    public MoneyComponent(PlayerEntity player) {
-        this.player = player;
+    public MoneyComponent() {
     }
 
     public int getMoney() {

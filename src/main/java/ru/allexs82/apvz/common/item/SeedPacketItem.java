@@ -32,37 +32,47 @@ public class SeedPacketItem extends SpawnEggItem {
     private static final int WHITE = 0xFFFFFFFF;
     private final boolean isDefensive;
     private final boolean isAquatic;
+    private final int cooldownTicks;
 
     public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings) {
-        this(type, settings, false, false);
+        this(type, settings, false, false, -1);
     }
 
-    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings, boolean isDefensive, boolean isAquatic) {
+    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings, int cooldownTicks) {
+        this(type, settings, false, false, cooldownTicks);
+    }
+
+    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings, boolean isDefensive, boolean isAquatic, int cooldownTicks) {
         super(type, WHITE, WHITE, settings);
         this.isDefensive = isDefensive;
         this.isAquatic = isAquatic;
+        this.cooldownTicks = cooldownTicks;
     }
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
         if (context.getWorld().isClient) return ActionResult.SUCCESS;
         BlockPos pos = context.getBlockPos();
+        PlayerEntity user = context.getPlayer();
         List<PVZPlantEntity> entities = context.getWorld().getEntitiesByClass(PVZPlantEntity.class, new Box(pos.up()), p -> !p.isDefensive());
         if (!entities.isEmpty()) return ActionResult.PASS;
 
         if (isAquatic) {
             FluidState fluidState = context.getWorld().getFluidState(pos.up());
             if (fluidState.isOf(Fluids.WATER) || fluidState.isOf(Fluids.FLOWING_WATER)) {
+                applyCooldown(user);
                 return super.useOnBlock(context);
             }
         } else {
             BlockState blockState = context.getWorld().getBlockState(pos);
             if (canPlantOnTop(blockState)) {
                 context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.2f, 1.0f);
+                applyCooldown(user);
                 return super.useOnBlock(context);
             } else if (canReplaceGrass(context)) {
                 context.getWorld().setBlockState(pos, Blocks.AIR.getDefaultState());
                 context.getWorld().playSound(null, pos, ModSounds.PLANT, SoundCategory.NEUTRAL, 0.2f, 1.0f);
+                applyCooldown(user);
                 return super.useOnBlock(context);
             }
         }
@@ -73,7 +83,11 @@ public class SeedPacketItem extends SpawnEggItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!isAquatic) return TypedActionResult.fail(user.getStackInHand(hand));
-        return super.use(world, user, hand);
+        TypedActionResult<ItemStack> result = super.use(world, user, hand);
+        if (result.getResult() == ActionResult.SUCCESS) {
+            applyCooldown(user);
+        }
+        return result;
     }
 
     @Override
@@ -97,6 +111,7 @@ public class SeedPacketItem extends SpawnEggItem {
                 }
                 player.getServerWorld().emitGameEvent(player, GameEvent.ENTITY_PLACE, entity.getBlockPos());
             }
+            applyCooldown(user);
         }
         return super.useOnEntity(stack, user, entity, hand);
     }
@@ -123,5 +138,11 @@ public class SeedPacketItem extends SpawnEggItem {
 
     private static boolean isGrassOrFlower(BlockState state) {
         return state.isIn(BlockTags.FLOWERS) || state.isOf(Blocks.GRASS) || state.isOf(Blocks.TALL_GRASS);
+    }
+
+    private void applyCooldown(PlayerEntity user) {
+        if (cooldownTicks > 0) {
+            user.getItemCooldownManager().set(this, cooldownTicks);
+        }
     }
 }

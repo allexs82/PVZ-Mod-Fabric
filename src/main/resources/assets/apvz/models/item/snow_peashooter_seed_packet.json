@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "apvz:item/snow_peashooter_seed_packet"
+  }
+}

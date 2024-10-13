@@ -2,6 +2,7 @@ package ru.allexs82.apvz.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import ru.allexs82.apvz.client.entity.plants.renderers.CherryBombRenderer;
 import ru.allexs82.apvz.client.entity.plants.renderers.PeashooterRenderer;
 import ru.allexs82.apvz.client.entity.plants.renderers.SnowPeashooterRenderer;
 import ru.allexs82.apvz.client.entity.plants.renderers.SunflowerRenderer;
@@ -17,6 +18,7 @@ public class ModEntityRenderers {
 
         EntityRendererRegistry.register(ModEntities.PEASHOOTER_ENTITY, PeashooterRenderer::new);
         EntityRendererRegistry.register(ModEntities.SUNFLOWER_ENTITY, SunflowerRenderer::new);
+        EntityRendererRegistry.register(ModEntities.CHERRY_BOMB_ENTITY, CherryBombRenderer::new);
         EntityRendererRegistry.register(ModEntities.SNOW_PEASHOOTER_ENTITY, SnowPeashooterRenderer::new);
     }
 }

@@ -20,6 +20,8 @@
   "item.apvz.sun": "Sun",
   "item.apvz.peashooter_seed_packet": "Peashooter seed packet",
   "item.apvz.basic_zombie_spawn_egg": "Zombie spawn egg",
+  "item.apvz.snow_peashooter_seed_packet": "Snow pea seed packet",
+  "item.apvz.cherry_bomb_seed_packet": "Cherry bomb seed packet",
 
   "entity.apvz.pea_entity": "Pea",
   "entity.apvz.snow_pea_entity": "Snow pea",
@@ -28,5 +30,6 @@
 
   "entity.apvz.peashooter": "Peashooter",
   "entity.apvz.sunflower": "Sunflower",
+  "entity.apvz.cherry_bomb": "Cherry bomb",
   "entity.apvz.snow_peashooter": "Snow pea"
 }
