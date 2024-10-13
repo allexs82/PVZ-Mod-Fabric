@@ -21,7 +21,7 @@ public abstract class AbstractZombieRenderer<T extends PVZZombieEntity> extends 
 
     @Override
     public void actuallyRender(MatrixStack poseStack, T animatable, BakedGeoModel model, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        if (animatable.isFreezes()) {
+        if (animatable.isZombieFrozen()) {
             red = 0.6f;
             green = 0.6f;
         }

@@ -24,7 +24,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Boolean> FREEZES =
+    private static final TrackedData<Boolean> ZOMBIE_FROZEN =
             DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private int freezesCountdown = -1;
 
@@ -42,12 +42,12 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
         this.dataTracker.set(ATTACKING, attacking);
     }
 
-    public boolean isFreezes() {
-        return this.dataTracker.get(FREEZES);
+    public boolean isZombieFrozen() {
+        return this.dataTracker.get(ZOMBIE_FROZEN);
     }
 
-    public void setFreezes(boolean freezes) {
-        this.dataTracker.set(FREEZES, freezes);
+    public void setZombieFrozen(boolean freezes) {
+        this.dataTracker.set(ZOMBIE_FROZEN, freezes);
     }
 
     @Override
@@ -59,10 +59,10 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     public void tick() {
         super.tick();
         if (freezesCountdown > 0 && this.getStatusEffect(StatusEffects.SLOWNESS) == null) {
-            setFreezes(false);
+            setZombieFrozen(false);
             freezesCountdown = -1;
         } else if (--freezesCountdown == 0) {
-            setFreezes(false);
+            setZombieFrozen(false);
         }
     }
 
@@ -70,7 +70,7 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     public boolean addStatusEffect(StatusEffectInstance effect, @Nullable Entity source) {
         boolean success = super.addStatusEffect(effect, source);
         if (success && effect.getEffectType() == StatusEffects.SLOWNESS) {
-            this.setFreezes(true);
+            this.setZombieFrozen(true);
             freezesCountdown = effect.getDuration() == -1 ? Integer.MAX_VALUE : effect.getDuration();
         }
         return success;
@@ -102,6 +102,6 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(ATTACKING, false);
-        this.dataTracker.startTracking(FREEZES, false);
+        this.dataTracker.startTracking(ZOMBIE_FROZEN, false);
     }
 }
