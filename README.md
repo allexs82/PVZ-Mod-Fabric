@@ -26,6 +26,8 @@ The mod is in active development, with about 5% completed so far. New features, 
 <details>
   <summary><h2>Roadmap</h2></summary>
 
+### Features 
+
 - [ ] Plants
   - [ ] Day (WIP)
   - [ ] Night
