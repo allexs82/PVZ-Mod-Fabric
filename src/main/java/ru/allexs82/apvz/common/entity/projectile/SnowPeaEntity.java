@@ -8,7 +8,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.core.ModEntities;
@@ -32,7 +31,7 @@ public class SnowPeaEntity extends PVZProjectileEntity {
             this.playSound(ModSounds.FREEZE, 0.4f, 1.0f);
         }
         StatusEffectInstance slowness =
-                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, true);
+                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, false);
         livingEntity.addStatusEffect(slowness);
     }
 
