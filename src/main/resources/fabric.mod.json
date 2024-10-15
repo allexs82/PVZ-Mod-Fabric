@@ -21,6 +21,9 @@
 		"client": [
 			"ru.allexs82.apvz.client.ModClient"
 		],
+		"fabric-datagen": [
+			"ru.allexs82.apvz.core.ModDataGenerator"
+		],
 		"cardinal-components": [
 			"ru.allexs82.apvz.core.ModComponents"
 		]
