@@ -12,19 +12,23 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 /**
  * Abstract base class for zombie renderers. Makes zombies blue, if they have slowness applied to them.
+ * @param <T> The entity class.
  */
 public abstract class AbstractZombieRenderer<T extends PVZZombieEntity> extends GeoEntityRenderer<T> {
-
     public AbstractZombieRenderer(EntityRendererFactory.Context renderManager, GeoModel<T> model) {
         super(renderManager, model);
     }
 
     @Override
-    public void actuallyRender(MatrixStack poseStack, T animatable, BakedGeoModel model, RenderLayer renderType, VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void actuallyRender(MatrixStack poseStack, T animatable, BakedGeoModel model, RenderLayer renderType,
+                               VertexConsumerProvider bufferSource, VertexConsumer buffer, boolean isReRender,
+                               float partialTick, int packedLight, int packedOverlay, float red, float green,
+                               float blue, float alpha) {
         if (animatable.isZombieFrozen()) {
             red = 0.6f;
             green = 0.6f;
         }
-        super.actuallyRender(poseStack, animatable, model, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        super.actuallyRender(poseStack, animatable, model, renderType, bufferSource, buffer, isReRender, partialTick,
+                packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

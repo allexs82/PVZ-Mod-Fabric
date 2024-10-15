@@ -5,7 +5,7 @@
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
-				"left_arm": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -45,7 +45,7 @@
 						}
 					}
 				},
-				"right_arm": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -85,7 +85,7 @@
 						}
 					}
 				},
-				"left_leg": {
+				"leftLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -125,7 +125,7 @@
 						}
 					}
 				},
-				"right_leg": {
+				"rightLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -192,7 +192,7 @@
 						}
 					}
 				},
-				"left_arm": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -216,7 +216,7 @@
 						}
 					}
 				},
-				"right_arm": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -262,7 +262,7 @@
 						}
 					}
 				},
-				"left_arm": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
@@ -282,7 +282,7 @@
 						}
 					}
 				},
-				"right_arm": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0],
