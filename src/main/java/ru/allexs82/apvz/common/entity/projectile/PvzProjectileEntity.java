@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
@@ -41,7 +42,7 @@ public abstract class PvzProjectileEntity extends ThrownItemEntity {
         }
     }
 
-    protected abstract void playHitSound(HitResult hitResult);
+    protected abstract SoundEvent getHitsSound();
 
     protected abstract int getDamage();
 
@@ -69,7 +70,7 @@ public abstract class PvzProjectileEntity extends ThrownItemEntity {
             Entity entity = entityHitResult.getEntity();
             if (entity instanceof PvzPlantEntity || entity instanceof PlayerEntity) return;
         }
-        this.playHitSound(hitResult);
+        this.playSound(this.getHitsSound(), 0.4f, 1.0f);
         if (!this.getWorld().isClient) {
             this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
