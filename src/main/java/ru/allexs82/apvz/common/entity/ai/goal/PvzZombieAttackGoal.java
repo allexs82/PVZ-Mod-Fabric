@@ -3,23 +3,23 @@ package ru.allexs82.apvz.common.entity.ai.goal;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.util.Hand;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import ru.allexs82.apvz.core.ModSounds;
 import ru.allexs82.apvz.utils.TickConvertor;
 
-public class PVZZombieAttackGoal extends MeleeAttackGoal {
+public class PvzZombieAttackGoal extends MeleeAttackGoal {
     private final int firstAttackDelay;
     private final int defaultAttackDelay;
-    private final PVZZombieEntity zombie;
+    private final PvzZombieEntity zombie;
     private int currentAttackDelay;
     private int ticksUntilNextAttack;
     private boolean shouldCountUntilNextAttack = false;
 
-    public PVZZombieAttackGoal(PVZZombieEntity entity, float firstAttackDelaySeconds, float attackDelaySeconds) {
+    public PvzZombieAttackGoal(PvzZombieEntity entity, float firstAttackDelaySeconds, float attackDelaySeconds) {
         this(entity, TickConvertor.seconds(firstAttackDelaySeconds), TickConvertor.seconds(attackDelaySeconds));
     }
 
-    public PVZZombieAttackGoal(PVZZombieEntity entity, int firstAttackDelayTicks, int attackDelayTicks) {
+    public PvzZombieAttackGoal(PvzZombieEntity entity, int firstAttackDelayTicks, int attackDelayTicks) {
         super(entity, 1.0D, true);
         this.firstAttackDelay = firstAttackDelayTicks;
         this.defaultAttackDelay = attackDelayTicks;

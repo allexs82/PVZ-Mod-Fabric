@@ -5,14 +5,14 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
-import ru.allexs82.apvz.common.entity.ai.goal.PVZZombieAttackGoal;
+import ru.allexs82.apvz.common.entity.ai.goal.PvzZombieAttackGoal;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.object.PlayState;
 
-public class BasicZombieEntity extends PVZZombieEntity {
-    public BasicZombieEntity(EntityType<? extends PVZZombieEntity> entityType, World world) {
+public class BasicZombieEntity extends PvzZombieEntity {
+    public BasicZombieEntity(EntityType<? extends PvzZombieEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -25,7 +25,7 @@ public class BasicZombieEntity extends PVZZombieEntity {
 
     @Override
     protected void initCustomGoals() {
-        this.goalSelector.add(0, new PVZZombieAttackGoal(this, 0.5f, 1f));
+        this.goalSelector.add(0, new PvzZombieAttackGoal(this, 0.5f, 1f));
     }
 
     @Override

@@ -5,7 +5,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
@@ -14,7 +14,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
  * Abstract base class for zombie renderers. Makes zombies blue, if they have slowness applied to them.
  * @param <T> The entity class.
  */
-public abstract class AbstractZombieRenderer<T extends PVZZombieEntity> extends GeoEntityRenderer<T> {
+public abstract class AbstractZombieRenderer<T extends PvzZombieEntity> extends GeoEntityRenderer<T> {
     public AbstractZombieRenderer(EntityRendererFactory.Context renderManager, GeoModel<T> model) {
         super(renderManager, model);
     }

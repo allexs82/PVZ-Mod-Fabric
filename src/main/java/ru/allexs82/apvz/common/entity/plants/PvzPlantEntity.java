@@ -16,7 +16,7 @@ import net.minecraft.item.ShovelItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import ru.allexs82.apvz.core.ModSounds;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -24,16 +24,16 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntity {
+public abstract class PvzPlantEntity extends PathAwareEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final boolean aquatic;
     private final boolean defensive;
 
-    public PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+    public PvzPlantEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         this(entityType, world, false, false);
     }
 
-    protected PVZPlantEntity(EntityType<? extends PVZPlantEntity> entityType, World world, boolean aquatic, boolean defensive) {
+    protected PvzPlantEntity(EntityType<? extends PvzPlantEntity> entityType, World world, boolean aquatic, boolean defensive) {
         super(entityType, world);
         this.aquatic = aquatic;
         this.defensive = defensive;
@@ -61,13 +61,13 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
     @Override
     public boolean damage(DamageSource source, float amount) {
         if (source.getAttacker() instanceof PlayerEntity) return false;
-        if (source.getAttacker() instanceof PVZPlantEntity) return false;
+        if (source.getAttacker() instanceof PvzPlantEntity) return false;
         return super.damage(source, amount);
     }
 
     @Override
     public void onDeath(DamageSource damageSource) {
-        if (damageSource.getAttacker() instanceof PVZZombieEntity) {
+        if (damageSource.getAttacker() instanceof PvzZombieEntity) {
             this.playSound(ModSounds.GULP, 0.6F, 1.0F);
         }
         super.onDeath(damageSource);
@@ -102,11 +102,11 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
     protected void initGoals() {
         this.goalSelector.add(6, new LookAroundGoal(this));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 16f));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PVZZombieEntity.class, 16f));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PVZPlantEntity.class, 16f));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PvzZombieEntity.class, 16f));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PvzPlantEntity.class, 16f));
 
-        this.targetSelector.add(1, new RevengeGoal(this, PVZPlantEntity.class, PlayerEntity.class));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZZombieEntity.class, true));
+        this.targetSelector.add(1, new RevengeGoal(this, PvzPlantEntity.class, PlayerEntity.class));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PvzZombieEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, ZombieEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, HostileEntity.class, true));
         initCustomGoals();
@@ -123,12 +123,12 @@ public abstract class PVZPlantEntity extends PathAwareEntity implements GeoEntit
     protected void tickCramming() {
         if (this.getWorld().isClient) return;
 
-        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox(), entity -> entity instanceof PVZPlantEntity);
+        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox(), entity -> entity instanceof PvzPlantEntity);
         if (list.isEmpty()) return;
 
         int crammingResistance = this.isDefensive() ? 1 : 0;
         for (Entity entity : list) {
-            PVZPlantEntity plant = (PVZPlantEntity) entity;
+            PvzPlantEntity plant = (PvzPlantEntity) entity;
 
             crammingResistance = this.isDefensive() && plant.isDefensive() ? crammingResistance - 2 : crammingResistance - 1;
             if (crammingResistance < 0)

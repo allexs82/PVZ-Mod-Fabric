@@ -13,13 +13,13 @@ import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
-public class SunflowerEntity extends PVZPlantEntity {
+public class SunflowerEntity extends PvzPlantEntity {
     private static final String TICKS_UNTIL_SUN_DROP_KEY = "TicksUntilSunDrop";
     private static final int MIN_TICKS_UNTIL_SUN_DROP = TickConvertor.minutes(3f);
     private static final int MAX_TICKS_UNTIL_SUN_DROP = TickConvertor.minutes(4.5f);
     private int ticksUntilSunDrop = MAX_TICKS_UNTIL_SUN_DROP;
 
-    public SunflowerEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+    public SunflowerEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 

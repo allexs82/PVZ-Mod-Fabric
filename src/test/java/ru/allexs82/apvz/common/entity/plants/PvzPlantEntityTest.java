@@ -15,13 +15,13 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-class PVZPlantEntityTest {
+class PvzPlantEntityTest {
     private AutoCloseable mocks;
 
     @Mock
-    private PVZPlantEntity mockDefensivePlant;
+    private PvzPlantEntity mockDefensivePlant;
     @Mock
-    private PVZPlantEntity mockNormalPlant;
+    private PvzPlantEntity mockNormalPlant;
     @Mock
     private ServerWorld mockWorld;
     @Mock

@@ -22,27 +22,29 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.common.entity.plants.PvzPlantEntity;
 import ru.allexs82.apvz.core.ModSounds;
 
 import java.util.List;
 
 public class SeedPacketItem extends SpawnEggItem {
     private static final int WHITE = 0xFFFFFFFF;
+    private static final int NO_COOLDOWN = -1;
     private final boolean isDefensive;
     private final boolean isAquatic;
     private final int cooldownTicks;
 
-    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings) {
-        this(type, settings, false, false, -1);
+    public SeedPacketItem(EntityType<? extends PvzPlantEntity> type, Settings settings) {
+        this(type, settings, false, false, NO_COOLDOWN);
     }
 
-    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings, int cooldownTicks) {
+    public SeedPacketItem(EntityType<? extends PvzPlantEntity> type, Settings settings, int cooldownTicks) {
         this(type, settings, false, false, cooldownTicks);
     }
 
-    public SeedPacketItem(EntityType<? extends PVZPlantEntity> type, Settings settings, boolean isDefensive, boolean isAquatic, int cooldownTicks) {
+    public SeedPacketItem(EntityType<? extends PvzPlantEntity> type, Settings settings, boolean isDefensive, boolean isAquatic, int cooldownTicks) {
         super(type, WHITE, WHITE, settings);
         this.isDefensive = isDefensive;
         this.isAquatic = isAquatic;
@@ -54,7 +56,7 @@ public class SeedPacketItem extends SpawnEggItem {
         if (context.getWorld().isClient) return ActionResult.SUCCESS;
         BlockPos pos = context.getBlockPos();
         PlayerEntity user = context.getPlayer();
-        List<PVZPlantEntity> entities = context.getWorld().getEntitiesByClass(PVZPlantEntity.class, new Box(pos.up()), p -> !p.isDefensive());
+        List<PvzPlantEntity> entities = context.getWorld().getEntitiesByClass(PvzPlantEntity.class, new Box(pos.up()), p -> !p.isDefensive());
         if (!entities.isEmpty()) return ActionResult.PASS;
 
         if (isAquatic) {
@@ -93,7 +95,7 @@ public class SeedPacketItem extends SpawnEggItem {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (this.isDefensive &&
-                entity instanceof PVZPlantEntity plant &&
+                entity instanceof PvzPlantEntity plant &&
                 !plant.isDefensive() &&
                 user instanceof ServerPlayerEntity player) {
             EntityType<?> entityType = this.getEntityType(stack.getNbt());
@@ -121,11 +123,11 @@ public class SeedPacketItem extends SpawnEggItem {
         return false;
     }
 
-    private static boolean canPlantOnTop(BlockState state) {
+    private static boolean canPlantOnTop(@NotNull BlockState state) {
         return state.isIn(BlockTags.DIRT) || state.isOf(Blocks.FARMLAND) || state.isIn(BlockTags.SAND) || state.isOf(Blocks.LILY_PAD);
     }
 
-    private static boolean canReplaceGrass(ItemUsageContext context) {
+    private static boolean canReplaceGrass(@NotNull ItemUsageContext context) {
         BlockPos pos = context.getBlockPos();
         BlockState state = context.getWorld().getBlockState(pos);
 
@@ -136,7 +138,7 @@ public class SeedPacketItem extends SpawnEggItem {
         } else return canPlantOnTop(context.getWorld().getBlockState(pos.down(2)));
     }
 
-    private static boolean isGrassOrFlower(BlockState state) {
+    private static boolean isGrassOrFlower(@NotNull BlockState state) {
         return state.isIn(BlockTags.FLOWERS) || state.isOf(Blocks.GRASS) || state.isOf(Blocks.TALL_GRASS);
     }
 

@@ -12,7 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Rarity;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.common.entity.plants.PvzPlantEntity;
 import ru.allexs82.apvz.common.item.MoneyItem;
 import ru.allexs82.apvz.common.item.SeedPacketItem;
 import ru.allexs82.apvz.data.ModelsProvider;
@@ -89,7 +89,7 @@ public class ModItems {
 
         /**
          * Sets a custom item for the builder.
-         * <p>Once this method is called, no further changes to {@link FabricItemSettings}
+         * <p>Once this method is called, no further changes to {@link #settings}
          * will be applied to the item.</p>
          *
          * @param item the item instance to use for this builder.
@@ -120,7 +120,7 @@ public class ModItems {
          * @param entityType the entity type for the plant.
          * @return the current builder instance for method chaining.
          */
-        public ItemBuilder seedPacket(EntityType<? extends PVZPlantEntity> entityType) {
+        public ItemBuilder seedPacket(EntityType<? extends PvzPlantEntity> entityType) {
             return this.seedPacket(entityType, NO_COOLDOWN);
         }
 
@@ -132,7 +132,7 @@ public class ModItems {
          * @param usageCooldown the cooldown time (in ticks) for using the seed packet.
          * @return the current builder instance for method chaining.
          */
-        public ItemBuilder seedPacket(EntityType<? extends PVZPlantEntity> entityType, int usageCooldown) {
+        public ItemBuilder seedPacket(EntityType<? extends PvzPlantEntity> entityType, int usageCooldown) {
             this.item = usageCooldown != NO_COOLDOWN ?
                     new SeedPacketItem(entityType, settings, usageCooldown) :
                     new SeedPacketItem(entityType, settings);
@@ -174,7 +174,6 @@ public class ModItems {
          *
          * @param model the model to use. Must not be {@code null}.
          * @return the current builder instance for method chaining.
-         * @throws NullPointerException if the model is {@code null}.
          */
         public ItemBuilder model(@NotNull Model model) {
             this.model = model;

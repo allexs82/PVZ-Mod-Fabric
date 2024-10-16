@@ -9,15 +9,15 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
+import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.core.ModCore;
 import ru.allexs82.apvz.core.ModSounds;
 
 public class ProjectileItem extends Item {
 
-    private final Class<? extends PVZProjectileEntity> projectileClass;
+    private final Class<? extends PvzProjectileEntity> projectileClass;
 
-    public ProjectileItem(Settings settings, Class<? extends PVZProjectileEntity> projectileClass) {
+    public ProjectileItem(Settings settings, Class<? extends PvzProjectileEntity> projectileClass) {
         super(settings);
         this.projectileClass = projectileClass;
     }
@@ -27,7 +27,7 @@ public class ProjectileItem extends Item {
         ItemStack stack = user.getStackInHand(hand);
         world.playSound(null, user.getBlockPos(), ModSounds.PROJECTILE_THROWN, SoundCategory.PLAYERS, 0.4F, 1.0F);
         if (!world.isClient) {
-            PVZProjectileEntity projectileEntity;
+            PvzProjectileEntity projectileEntity;
             try {
                 projectileEntity = projectileClass.getConstructor(World.class, LivingEntity.class).newInstance(world, user);
             } catch (Exception e) {

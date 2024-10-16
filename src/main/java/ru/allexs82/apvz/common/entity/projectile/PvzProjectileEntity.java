@@ -11,15 +11,15 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
-import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.common.entity.plants.PvzPlantEntity;
 
-public abstract class PVZProjectileEntity extends ThrownItemEntity {
+public abstract class PvzProjectileEntity extends ThrownItemEntity {
 
-    public PVZProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    public PvzProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    protected PVZProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, LivingEntity owner) {
+    protected PvzProjectileEntity(EntityType<? extends ThrownItemEntity> entityType, World world, LivingEntity owner) {
         super(entityType, owner, world);
     }
 
@@ -67,7 +67,7 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
         if (hitResult.getType() == HitResult.Type.ENTITY) {
             EntityHitResult entityHitResult = (EntityHitResult) hitResult;
             Entity entity = entityHitResult.getEntity();
-            if (entity instanceof PVZPlantEntity || entity instanceof PlayerEntity) return;
+            if (entity instanceof PvzPlantEntity || entity instanceof PlayerEntity) return;
         }
         this.playHitSound(hitResult);
         if (!this.getWorld().isClient) {
@@ -77,6 +77,6 @@ public abstract class PVZProjectileEntity extends ThrownItemEntity {
     }
 
     protected boolean shouldDealDamage(Entity entity) {
-        return !(entity instanceof PVZPlantEntity || entity instanceof PlayerEntity || this.getOwner() instanceof PlayerEntity);
+        return !(entity instanceof PvzPlantEntity || entity instanceof PlayerEntity || this.getOwner() instanceof PlayerEntity);
     }
 }

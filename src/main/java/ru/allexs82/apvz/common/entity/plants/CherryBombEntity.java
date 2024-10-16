@@ -20,8 +20,8 @@ import software.bernie.geckolib.core.object.PlayState;
 
 import java.util.List;
 
-public class CherryBombEntity extends PVZPlantEntity {
-    public CherryBombEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+public class CherryBombEntity extends PvzPlantEntity {
+    public CherryBombEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -61,7 +61,7 @@ public class CherryBombEntity extends PVZPlantEntity {
 
     @Override
     protected void tickCramming() {
-        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox(), entity -> entity instanceof PVZPlantEntity);
+        List<Entity> list = this.getWorld().getOtherEntities(this, this.getBoundingBox(), entity -> entity instanceof PvzPlantEntity);
         if (!list.isEmpty()) this.discard();
     }
 

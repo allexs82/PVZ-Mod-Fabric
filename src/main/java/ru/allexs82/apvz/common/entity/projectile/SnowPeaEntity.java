@@ -15,7 +15,7 @@ import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
 import ru.allexs82.apvz.utils.TickConvertor;
 
-public class SnowPeaEntity extends PVZProjectileEntity {
+public class SnowPeaEntity extends PvzProjectileEntity {
     public SnowPeaEntity(World world, LivingEntity owner) {
         super(ModEntities.SNOW_PEA_ENTITY, world, owner);
     }

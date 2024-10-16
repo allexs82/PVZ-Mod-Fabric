@@ -6,7 +6,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import ru.allexs82.apvz.client.entity.zombies.renderers.layers.DefaultBipedZombieBlockAndItemLayer;
 import ru.allexs82.apvz.client.entity.zombies.renderers.layers.DefaultBipedZombieItemArmorLayer;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.model.GeoModel;
 
@@ -14,7 +14,7 @@ import software.bernie.geckolib.model.GeoModel;
  * Renderer for default biped zombie model. Adds armor and held item rendering.
  * @param <T> Entity class.
  */
-public class DefaultBipedZombieRenderer<T extends PVZZombieEntity> extends AbstractZombieRenderer<T> {
+public class DefaultBipedZombieRenderer<T extends PvzZombieEntity> extends AbstractZombieRenderer<T> {
     private final DefaultBipedZombieBlockAndItemLayer<T> blockAndItemLayer =
             new DefaultBipedZombieBlockAndItemLayer<>(this);
 

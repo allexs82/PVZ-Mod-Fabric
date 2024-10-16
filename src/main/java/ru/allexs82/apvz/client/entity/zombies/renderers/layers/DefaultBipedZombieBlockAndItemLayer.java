@@ -8,12 +8,12 @@ import net.minecraft.item.ShieldItem;
 import net.minecraft.util.math.RotationAxis;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 
-public class DefaultBipedZombieBlockAndItemLayer<T extends PVZZombieEntity> extends BlockAndItemGeoLayer<T> {
+public class DefaultBipedZombieBlockAndItemLayer<T extends PvzZombieEntity> extends BlockAndItemGeoLayer<T> {
     private static final String LEFT_HAND = "leftHand";
     private static final String RIGHT_HAND = "rightHand";
 

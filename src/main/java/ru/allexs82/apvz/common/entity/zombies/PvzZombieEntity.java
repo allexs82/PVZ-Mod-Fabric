@@ -15,22 +15,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import ru.allexs82.apvz.common.entity.plants.PVZPlantEntity;
+import ru.allexs82.apvz.common.entity.plants.PvzPlantEntity;
 import ru.allexs82.apvz.core.ModSounds;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity {
+public abstract class PvzZombieEntity extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
-            DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+            DataTracker.registerData(PvzZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> ZOMBIE_FROZEN =
-            DataTracker.registerData(PVZZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+            DataTracker.registerData(PvzZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private int zombieFrozenCountdown = -1;
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    protected PVZZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    protected PvzZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -87,8 +87,8 @@ public abstract class PVZZombieEntity extends HostileEntity implements GeoEntity
         this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
         this.goalSelector.add(6, new WanderAroundGoal(this, 1D));
 
-        this.targetSelector.add(1, new RevengeGoal(this, PVZZombieEntity.class));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PVZPlantEntity.class, true));
+        this.targetSelector.add(1, new RevengeGoal(this, PvzZombieEntity.class));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PvzPlantEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));

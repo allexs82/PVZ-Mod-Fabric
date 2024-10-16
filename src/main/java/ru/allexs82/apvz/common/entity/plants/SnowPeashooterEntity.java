@@ -6,7 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
+import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
@@ -14,7 +14,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 
 public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
 
-    public SnowPeashooterEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+    public SnowPeashooterEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -32,7 +32,7 @@ public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
     }
 
     @Override
-    protected @NotNull PVZProjectileEntity createProjectile() {
+    protected @NotNull PvzProjectileEntity createProjectile() {
         return new SnowPeaEntity(this.getWorld(), this);
     }
 }

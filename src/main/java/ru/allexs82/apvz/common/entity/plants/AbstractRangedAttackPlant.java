@@ -7,22 +7,22 @@ import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
+import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.core.ModSounds;
 import ru.allexs82.apvz.utils.TickConvertor;
 
-public abstract class AbstractRangedAttackPlant extends PVZPlantEntity implements RangedAttackMob {
-    protected AbstractRangedAttackPlant(EntityType<? extends PVZPlantEntity> entityType, World world) {
+public abstract class AbstractRangedAttackPlant extends PvzPlantEntity implements RangedAttackMob {
+    protected AbstractRangedAttackPlant(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    protected AbstractRangedAttackPlant(EntityType<? extends PVZPlantEntity> entityType, World world, boolean aquatic, boolean defensive) {
+    protected AbstractRangedAttackPlant(EntityType<? extends PvzPlantEntity> entityType, World world, boolean aquatic, boolean defensive) {
         super(entityType, world, aquatic, defensive);
     }
 
     @Override
     public void shootAt(LivingEntity target, float pullProgress) {
-        PVZProjectileEntity projectile = this.createProjectile();
+        PvzProjectileEntity projectile = this.createProjectile();
 
         double targetEyeY = target.getEyeY() - 1.1F;
         double distanceX = target.getX() - this.getX();
@@ -41,7 +41,7 @@ public abstract class AbstractRangedAttackPlant extends PVZPlantEntity implement
     }
 
     @Contract(value = "-> new", pure = true)
-    protected abstract @NotNull PVZProjectileEntity createProjectile();
+    protected abstract @NotNull PvzProjectileEntity createProjectile();
 
     protected int getAttackDelayTicks() {
         return TickConvertor.seconds(1);

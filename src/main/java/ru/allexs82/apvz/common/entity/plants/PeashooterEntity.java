@@ -6,14 +6,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import ru.allexs82.apvz.common.entity.projectile.PVZProjectileEntity;
+import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
 public class PeashooterEntity extends AbstractRangedAttackPlant {
-    public PeashooterEntity(EntityType<? extends PVZPlantEntity> entityType, World world) {
+    public PeashooterEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -31,7 +31,7 @@ public class PeashooterEntity extends AbstractRangedAttackPlant {
     }
 
     @Override
-    protected @NotNull PVZProjectileEntity createProjectile() {
+    protected @NotNull PvzProjectileEntity createProjectile() {
         return new PeaEntity(this.getWorld(), this);
     }
 }

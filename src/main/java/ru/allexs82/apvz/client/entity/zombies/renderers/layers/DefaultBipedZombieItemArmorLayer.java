@@ -6,12 +6,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import ru.allexs82.apvz.common.entity.zombies.PVZZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.ItemArmorGeoLayer;
 
-public class DefaultBipedZombieItemArmorLayer<T extends PVZZombieEntity> extends ItemArmorGeoLayer<T> {
+public class DefaultBipedZombieItemArmorLayer<T extends PvzZombieEntity> extends ItemArmorGeoLayer<T> {
     private static final String LEFT_BOOT = "armorLeftFoot";
     private static final String RIGHT_BOOT = "armorRightFoot";
 

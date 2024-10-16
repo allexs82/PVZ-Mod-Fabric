@@ -10,7 +10,7 @@ import ru.allexs82.apvz.core.ModEntities;
 import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
 
-public class PeaEntity extends PVZProjectileEntity {
+public class PeaEntity extends PvzProjectileEntity {
     public PeaEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
