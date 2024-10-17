@@ -42,7 +42,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"apvz:money"
+			"apvz:money",
+			"apvz:zombie_armor"
 		]
 	}
 }

@@ -16,7 +16,7 @@ public class BasicZombieEntity extends PvzZombieEntity {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createBasicZombieEntityAttributes() {
+    public static DefaultAttributeContainer.Builder createDefaultBasicZombieAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)

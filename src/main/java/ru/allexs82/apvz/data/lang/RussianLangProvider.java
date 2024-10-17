@@ -40,6 +40,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.SNOW_PEA_ENTITY, "Ледяной горох");
         tb.add(ModEntities.SNOW_PEASHOOTER_ENTITY, "Ледяной горохомёт");
         tb.add(ModEntities.CHERRY_BOMB_ENTITY, "Вишнёвая бомба");
+        tb.add(ModEntities.BASIC_ZOMBIE_ENTITY, "Зомби");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -55,5 +56,6 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.SNOW_PEA, "Ледяной горох");
         tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Пакетик с семянами ледяного горохомёта");
         tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Пакетик с семянами вишнёвой бомбы");
+        tb.add(ModItems.CONE, "Конус");
     }
 }

@@ -30,6 +30,7 @@ public class SnowPeaEntity extends PvzProjectileEntity {
         if (livingEntity.getStatusEffect(StatusEffects.SLOWNESS) == null) {
             this.playSound(ModSounds.FREEZE, 0.4f, 1.0f);
         }
+        if (livingEntity.isOnFire()) livingEntity.extinguish();
         StatusEffectInstance slowness =
                 new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, false);
         livingEntity.addStatusEffect(slowness);

@@ -15,6 +15,7 @@ public class ModSounds {
     public static final SoundEvent SUN_DROP = register("sun_drop");
     public static final SoundEvent FREEZE = register("freeze");
     public static final SoundEvent CHERRY_BOMB_EXPLOSION = register("cherry_bomb_explosion");
+    public static final SoundEvent PLASTIC_HIT = register("plastic_hit");
 
     public static void init() {
         ModCore.LOGGER.info("Sounds initialization");

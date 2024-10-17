@@ -40,6 +40,7 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.SNOW_PEA_ENTITY, "Snow pea");
         tb.add(ModEntities.SNOW_PEASHOOTER_ENTITY, "Snow peashooter");
         tb.add(ModEntities.CHERRY_BOMB_ENTITY, "Cherry bomb");
+        tb.add(ModEntities.BASIC_ZOMBIE_ENTITY, "Zombie");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -55,5 +56,6 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.SNOW_PEA, "Snow pea");
         tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Snow pea seed packet");
         tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Cherry bomb seed packet");
+        tb.add(ModItems.CONE, "Cone");
     }
 }

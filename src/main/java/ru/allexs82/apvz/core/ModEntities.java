@@ -15,12 +15,14 @@ import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
 import ru.allexs82.apvz.common.entity.plants.SunflowerEntity;
 import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.ConeheadZombieEntity;
 
 public class ModEntities {
     public static final EntityType<PeaEntity> PEA_ENTITY;
     public static final EntityType<SnowPeaEntity> SNOW_PEA_ENTITY;
 
     public static final EntityType<BasicZombieEntity> BASIC_ZOMBIE_ENTITY;
+    public static final EntityType<ConeheadZombieEntity> CONEHEAD_ZOMBIE_ENTITY;
 
     public static final EntityType<PeashooterEntity> PEASHOOTER_ENTITY;
     public static final EntityType<SunflowerEntity> SUNFLOWER_ENTITY;
@@ -32,7 +34,8 @@ public class ModEntities {
     }
 
     private static void initEntitiesAttributes() {
-        FabricDefaultAttributeRegistry.register(BASIC_ZOMBIE_ENTITY, BasicZombieEntity.createBasicZombieEntityAttributes());
+        FabricDefaultAttributeRegistry.register(BASIC_ZOMBIE_ENTITY, BasicZombieEntity.createDefaultBasicZombieAttributes());
+        FabricDefaultAttributeRegistry.register(CONEHEAD_ZOMBIE_ENTITY, ConeheadZombieEntity.createDefaultConeheadZombieAttributes());
 
         FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
         FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
@@ -74,5 +77,9 @@ public class ModEntities {
         CHERRY_BOMB_ENTITY = register("cherry_bomb", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, CherryBombEntity::new)
                 .dimensions(EntityDimensions.fixed(0.8f, 0.6f)).build());
+
+        CONEHEAD_ZOMBIE_ENTITY = register("conehead_zombie", FabricEntityTypeBuilder
+                .create(SpawnGroup.MONSTER, ConeheadZombieEntity::new)
+                .dimensions(EntityDimensions.fixed(0.6f, 1.95f)).build());
     }
 }

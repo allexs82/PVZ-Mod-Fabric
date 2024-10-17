@@ -63,5 +63,12 @@
     "sounds": [
       "apvz:cherry_bomb"
     ]
+  },
+  "plastic_hit": {
+    "subtitles": "apvz.plastic_hit",
+    "sounds": [
+      "apvz:plastic_hit",
+      "apvz:plastic_hit2"
+    ]
   }
 }
