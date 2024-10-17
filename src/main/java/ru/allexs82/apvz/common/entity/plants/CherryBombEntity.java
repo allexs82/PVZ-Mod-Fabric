@@ -6,7 +6,6 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.world.PvzExplosion;
@@ -46,15 +45,11 @@ public class CherryBombEntity extends PvzPlantEntity {
         super.tick();
         if (age <= TickConvertor.seconds(1.6f)) return;
 
-        // Using EXPLOSION_EMITTER at entity's precise location
-        this.getWorld().addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0, 0.0, 0.0);
-
         this.playSound(ModSounds.CHERRY_BOMB_EXPLOSION, 0.4f, 1.0f);
 
-        // Create a damage box around the entity
         Box box = new Box(this.getBlockPos()).expand(2.5f);
         PvzExplosion explosion = new PvzExplosion(box, this.getWorld(), this, PvzExplosion.HOSTILE_PREDICATE);
-        explosion.explode();
+        explosion.explode(true);
         this.discard();
     }
 

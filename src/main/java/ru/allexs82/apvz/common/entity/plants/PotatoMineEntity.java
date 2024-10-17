@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.world.PvzExplosion;
@@ -40,9 +39,8 @@ public class PotatoMineEntity extends PvzPlantEntity {
             Box box = new Box(this.getBlockPos().up());
             box = box.expand(0.5f);
             PvzExplosion explosion = new PvzExplosion(box, this.getWorld(), this, PvzExplosion.HOSTILE_PREDICATE);
-            if (explosion.testPredicateAndExplode()) {
+            if (explosion.testPredicateAndExplode(true)) {
                 this.playSound(ModSounds.POTATO_MINE, 0.4f, 1.0f);
-                this.getWorld().addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0f, 0.0f, 0.0f);
                 this.discard();
             }
         }
