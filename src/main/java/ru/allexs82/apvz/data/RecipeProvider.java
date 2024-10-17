@@ -15,7 +15,7 @@ public class RecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PEA)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.PEA, 4)
                 .pattern("WW")
                 .pattern("WW")
                 .input('W', Items.WHEAT_SEEDS)
@@ -23,7 +23,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                         conditionsFromItem(Items.WHEAT_SEEDS))
                 .offerTo(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.SNOW_PEA)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.SNOW_PEA, 2)
                 .pattern("PS")
                 .pattern("SP")
                 .input('P', ModItems.PEA)
@@ -41,7 +41,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                         conditionsFromItem(Items.PAPER))
                 .offerTo(exporter);
         
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SUNFLOWER_SEED_PACKET)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SUNFLOWER_SEED_PACKET, 2)
                 .pattern(" S ")
                 .pattern("SPS")
                 .pattern(" S ")
@@ -70,7 +70,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                 .pattern("PSP")
                 .input('P', ModItems.SNOW_PEA)
                 .input('S', ModItems.SUN)
-                .input('#', ModItems.EMPTY_SEED_PACKET)
+                .input('#', Items.SNOWBALL)
                 .input('$', ModItems.PEASHOOTER_SEED_PACKET)
                 .criterion(hasItem(ModItems.SNOW_PEA),
                         conditionsFromItem(ModItems.SNOW_PEA))
