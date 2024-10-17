@@ -77,5 +77,11 @@
       "apvz:iron_impact",
       "apvz:iron_impact2"
     ]
+  },
+  "potato_mine": {
+    "subtitles": "apvz.potato_mine",
+    "sounds": [
+      "apvz:potato_mine"
+    ]
   }
 }

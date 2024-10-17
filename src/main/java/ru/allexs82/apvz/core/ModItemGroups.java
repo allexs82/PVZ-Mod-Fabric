@@ -46,6 +46,7 @@ public class ModItemGroups {
             entries.add(ModItems.PEASHOOTER_SEED_PACKET);
             entries.add(ModItems.SUNFLOWER_SEED_PACKET);
             entries.add(ModItems.CHERRY_BOMB_SEED_PACKET);
+            entries.add(ModItems.POTATO_MINE_SEED_PACKET);
             entries.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET);
 
             entries.add(ModItems.BASIC_ZOMBIE_SPAWN_EGG);

@@ -31,6 +31,7 @@ public class ModItems {
     public static final Item BUCKET;
     public static final Item CONEHEAD_ZOMBIE_SPAWN_EGG;
     public static final Item BUCKETHEAD_ZOMBIE_SPAWN_EGG;
+    public static final Item POTATO_MINE_SEED_PACKET;
 
     public static void init() {
         ModCore.LOGGER.info("Items initialization");
@@ -53,5 +54,6 @@ public class ModItems {
         BUCKET = builder("bucket").item(new BucketArmorItem(ArmorItem.Type.HELMET, new FabricItemSettings())).build();
         CONEHEAD_ZOMBIE_SPAWN_EGG = builder("conehead_zombie").spawnEgg(ModEntities.CONEHEAD_ZOMBIE_ENTITY,0x7c9b80, 0xff6600).build();
         BUCKETHEAD_ZOMBIE_SPAWN_EGG = builder("buckethead_zombie").spawnEgg(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, 0x7c9b80, 0xcbc5c4).build();
+        POTATO_MINE_SEED_PACKET = seedPacket("potato_mine", ModEntities.POTATO_MINE_ENTITY).build();
     }
 }

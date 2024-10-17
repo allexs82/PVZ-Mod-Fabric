@@ -8,11 +8,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import ru.allexs82.apvz.common.entity.plants.CherryBombEntity;
-import ru.allexs82.apvz.common.entity.plants.PeashooterEntity;
-import ru.allexs82.apvz.common.entity.plants.SnowPeashooterEntity;
+import ru.allexs82.apvz.common.entity.plants.*;
 import ru.allexs82.apvz.common.entity.projectile.PeaEntity;
-import ru.allexs82.apvz.common.entity.plants.SunflowerEntity;
 import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 import ru.allexs82.apvz.common.entity.zombies.BucketheadZombieEntity;
@@ -29,6 +26,7 @@ public class ModEntities {
     public static final EntityType<PeashooterEntity> PEASHOOTER_ENTITY;
     public static final EntityType<SunflowerEntity> SUNFLOWER_ENTITY;
     public static final EntityType<CherryBombEntity> CHERRY_BOMB_ENTITY;
+    public static final EntityType<PotatoMineEntity> POTATO_MINE_ENTITY;
     public static final EntityType<SnowPeashooterEntity> SNOW_PEASHOOTER_ENTITY;
 
     public static void init() {
@@ -43,6 +41,7 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
         FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
         FabricDefaultAttributeRegistry.register(CHERRY_BOMB_ENTITY, CherryBombEntity.createDefaultCherryBombAttributes());
+        FabricDefaultAttributeRegistry.register(POTATO_MINE_ENTITY, PotatoMineEntity.createDefaultPotatoMineAttributes());
         FabricDefaultAttributeRegistry.register(SNOW_PEASHOOTER_ENTITY, SnowPeashooterEntity.createDefaultSnowPeashooterAttributes());
     }
 
@@ -88,5 +87,9 @@ public class ModEntities {
         BUCKETHEAD_ZOMBIE_ENTITY = register("buckethead_zombie", FabricEntityTypeBuilder
                 .create(SpawnGroup.MONSTER, BucketheadZombieEntity::new)
                 .dimensions(EntityDimensions.fixed(0.6f, 1.95f)).build());
+
+        POTATO_MINE_ENTITY = register("potato_mine", FabricEntityTypeBuilder
+                .create(SpawnGroup.MISC, PotatoMineEntity::new)
+                .dimensions(EntityDimensions.fixed(0.8f, 0.5f)).build());
     }
 }

@@ -43,6 +43,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.BASIC_ZOMBIE_ENTITY, "Зомби");
         tb.add(ModEntities.CONEHEAD_ZOMBIE_ENTITY, "Зомби с конусом");
         tb.add(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, "Зомби с ведром");
+        tb.add(ModEntities.POTATO_MINE_ENTITY, "Картофельная мина");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -51,16 +52,17 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.GOLDEN_COIN, "Золотая монета");
         tb.add(ModItems.DIAMOND, "Алмаз");
         tb.add(ModItems.EMPTY_SEED_PACKET, "Пустой пакет для семян");
-        tb.add(ModItems.SUNFLOWER_SEED_PACKET, "Пакетик с семянами подсолнуха");
+        tb.add(ModItems.SUNFLOWER_SEED_PACKET, "Пакетик с семенами подсолнуха");
         tb.add(ModItems.PEA, "Горох");
-        tb.add(ModItems.PEASHOOTER_SEED_PACKET, "Пакетик с семянами горохомёта");
+        tb.add(ModItems.PEASHOOTER_SEED_PACKET, "Пакетик с семенами горохомёта");
         tb.add(ModItems.BASIC_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби");
         tb.add(ModItems.SNOW_PEA, "Ледяной горох");
-        tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Пакетик с семянами ледяного горохомёта");
-        tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Пакетик с семянами вишнёвой бомбы");
+        tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Пакетик с семенами ледяного горохомёта");
+        tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Пакетик с семенами вишнёвой бомбы");
         tb.add(ModItems.CONE, "Конус");
         tb.add(ModItems.BUCKET, "Ведро");
         tb.add(ModItems.CONEHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с конусом");
         tb.add(ModItems.BUCKETHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с ведром");
+        tb.add(ModItems.POTATO_MINE_SEED_PACKET, "Пакетик семенами картофельной мины");
     }
 }

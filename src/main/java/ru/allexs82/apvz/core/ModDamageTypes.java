@@ -5,5 +5,5 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
 public class ModDamageTypes {
-    public static final RegistryKey<DamageType> CHERRY_EXPLOSION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModCore.id("cherry_explosion"));
+    public static final RegistryKey<DamageType> PVZ_EXPLOSION = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModCore.id("pvz_explosion"));
 }

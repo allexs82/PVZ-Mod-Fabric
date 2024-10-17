@@ -5,7 +5,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import ru.allexs82.apvz.common.entity.zombies.ArmoredZombieEntity;
-import ru.allexs82.apvz.core.ModCore;
 
 public class ZombieArmorComponent implements AutoSyncedComponent {
 
@@ -35,7 +34,6 @@ public class ZombieArmorComponent implements AutoSyncedComponent {
 
     public void damageArmor(EquipmentSlot slot, float amount) {
         ItemStack stack = entity.getEquippedStack(slot);
-        ModCore.LOGGER.info("{} - {} = {}", stack.getMaxDamage() - stack.getDamage(), amount, stack.getMaxDamage() - stack.getDamage() - amount);
         if (stack.getMaxDamage() - stack.getDamage() > 0) {
             stack.damage(Math.round(amount), entity, entity -> this.armored = false);
         }

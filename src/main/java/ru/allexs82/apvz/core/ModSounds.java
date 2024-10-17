@@ -17,6 +17,7 @@ public class ModSounds {
     public static final SoundEvent CHERRY_BOMB_EXPLOSION = register("cherry_bomb_explosion");
     public static final SoundEvent PLASTIC_HIT = register("plastic_hit");
     public static final SoundEvent IRON_IMPACT = register("iron_impact");
+    public static final SoundEvent POTATO_MINE = register("potato_mine");
 
     public static void init() {
         ModCore.LOGGER.info("Sounds initialization");
