@@ -41,6 +41,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.SNOW_PEASHOOTER_ENTITY, "Snow peashooter");
         tb.add(ModEntities.CHERRY_BOMB_ENTITY, "Cherry bomb");
         tb.add(ModEntities.BASIC_ZOMBIE_ENTITY, "Zombie");
+        tb.add(ModEntities.CONEHEAD_ZOMBIE_ENTITY, "Conehead zombie");
+        tb.add(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, "Buckethead zombie");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -57,5 +59,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Snow pea seed packet");
         tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Cherry bomb seed packet");
         tb.add(ModItems.CONE, "Cone");
+        tb.add(ModItems.BUCKET, "Bucket");
+        tb.add(ModItems.CONEHEAD_ZOMBIE_SPAWN_EGG, "Conehead zombie spawn egg");
+        tb.add(ModItems.BUCKETHEAD_ZOMBIE_SPAWN_EGG, "Buckethead zombie spawn egg");
     }
 }

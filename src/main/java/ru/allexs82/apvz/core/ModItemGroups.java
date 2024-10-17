@@ -49,6 +49,8 @@ public class ModItemGroups {
             entries.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET);
 
             entries.add(ModItems.BASIC_ZOMBIE_SPAWN_EGG);
+            entries.add(ModItems.CONEHEAD_ZOMBIE_SPAWN_EGG);
+            entries.add(ModItems.BUCKETHEAD_ZOMBIE_SPAWN_EGG);
         });
     }
 

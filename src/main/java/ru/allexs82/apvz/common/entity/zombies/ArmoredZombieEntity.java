@@ -7,6 +7,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
@@ -35,6 +36,10 @@ public abstract class ArmoredZombieEntity extends BasicZombieEntity {
 
     @Override
     protected final void applyDamage(DamageSource source, float amount) {
+        if (source.isIn(DamageTypeTags.BYPASSES_ARMOR)) {
+            super.applyDamage(source, amount);
+            return;
+        }
         ZombieArmorComponent component = ModComponents.ZOMBIE_ARMOR.getNullable(this);
         if (component == null || !component.isArmored()) {
             super.applyDamage(source, amount);

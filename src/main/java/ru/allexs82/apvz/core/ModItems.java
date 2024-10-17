@@ -6,6 +6,7 @@ import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
 import ru.allexs82.apvz.common.item.MoneyItem;
+import ru.allexs82.apvz.common.item.armor.BucketArmorItem;
 import ru.allexs82.apvz.common.item.armor.ConeArmorItem;
 import ru.allexs82.apvz.utils.TickConvertor;
 
@@ -27,6 +28,9 @@ public class ModItems {
     public static final Item SNOW_PEASHOOTER_SEED_PACKET;
     public static final Item CHERRY_BOMB_SEED_PACKET;
     public static final Item CONE;
+    public static final Item BUCKET;
+    public static final Item CONEHEAD_ZOMBIE_SPAWN_EGG;
+    public static final Item BUCKETHEAD_ZOMBIE_SPAWN_EGG;
 
     public static void init() {
         ModCore.LOGGER.info("Items initialization");
@@ -46,5 +50,8 @@ public class ModItems {
         SNOW_PEASHOOTER_SEED_PACKET = seedPacket("snow_peashooter", ModEntities.SNOW_PEASHOOTER_ENTITY).build();
         CHERRY_BOMB_SEED_PACKET = seedPacket("cherry_bomb", ModEntities.CHERRY_BOMB_ENTITY).usageCooldown(TickConvertor.seconds(5)).build();
         CONE = builder("cone").item(new ConeArmorItem(ArmorItem.Type.HELMET, new FabricItemSettings())).build();
+        BUCKET = builder("bucket").item(new BucketArmorItem(ArmorItem.Type.HELMET, new FabricItemSettings())).build();
+        CONEHEAD_ZOMBIE_SPAWN_EGG = builder("conehead_zombie").spawnEgg(ModEntities.CONEHEAD_ZOMBIE_ENTITY,0x7c9b80, 0xff6600).build();
+        BUCKETHEAD_ZOMBIE_SPAWN_EGG = builder("buckethead_zombie").spawnEgg(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, 0x7c9b80, 0xcbc5c4).build();
     }
 }

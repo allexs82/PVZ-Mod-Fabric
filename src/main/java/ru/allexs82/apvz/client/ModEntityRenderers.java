@@ -16,6 +16,7 @@ public class ModEntityRenderers {
 
         EntityRendererRegistry.register(ModEntities.BASIC_ZOMBIE_ENTITY, BasicZombieRenderer::new);
         EntityRendererRegistry.register(ModEntities.CONEHEAD_ZOMBIE_ENTITY, BasicZombieRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, BasicZombieRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.PEASHOOTER_ENTITY, PeashooterRenderer::new);
         EntityRendererRegistry.register(ModEntities.SUNFLOWER_ENTITY, SunflowerRenderer::new);

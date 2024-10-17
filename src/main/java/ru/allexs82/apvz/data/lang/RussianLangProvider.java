@@ -13,7 +13,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
-        translationBuilder.add(ModItemGroups.ALMANAC_GROUP_KEY, "Almanac");
+        translationBuilder.add(ModItemGroups.ALMANAC_GROUP_KEY, "Альманах");
         translationBuilder.add(ModItemGroups.APVZ_ITEMS_GROUP_KEY, "allexs82's Plants vs. Zombies");
 
         this.generateMiscTranslation(translationBuilder);
@@ -25,7 +25,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add("command.money.get.error", "Игрок не найден");
         tb.add("command.money.get.success", "У игрока %1$s %2$s денег");
         tb.add("command.money.set.success.single", "Установлено %1$s денег игроку %2$s");
-        tb.add("command.money.set.success.multiple", "Установлено %1$s денег %2$s целям");
+        tb.add("command.money.set.success.multiple", "Установлено %1$s денег %2$s игрокам");
 
         tb.add("apvz.zombie_groan", "Зомби воет");
         tb.add("apvz.plant", "Растение посажено");
@@ -41,6 +41,8 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.SNOW_PEASHOOTER_ENTITY, "Ледяной горохомёт");
         tb.add(ModEntities.CHERRY_BOMB_ENTITY, "Вишнёвая бомба");
         tb.add(ModEntities.BASIC_ZOMBIE_ENTITY, "Зомби");
+        tb.add(ModEntities.CONEHEAD_ZOMBIE_ENTITY, "Зомби с конусом");
+        tb.add(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, "Зомби с ведром");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -57,5 +59,8 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.SNOW_PEASHOOTER_SEED_PACKET, "Пакетик с семянами ледяного горохомёта");
         tb.add(ModItems.CHERRY_BOMB_SEED_PACKET, "Пакетик с семянами вишнёвой бомбы");
         tb.add(ModItems.CONE, "Конус");
+        tb.add(ModItems.BUCKET, "Ведро");
+        tb.add(ModItems.CONEHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с конусом");
+        tb.add(ModItems.BUCKETHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с ведром");
     }
 }

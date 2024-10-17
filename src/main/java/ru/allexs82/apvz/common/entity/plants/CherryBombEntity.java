@@ -8,8 +8,10 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import ru.allexs82.apvz.core.ModDamageTypes;
 import ru.allexs82.apvz.core.ModSounds;
 import ru.allexs82.apvz.utils.TickConvertor;
 import software.bernie.geckolib.constant.DefaultAnimations;
@@ -54,7 +56,7 @@ public class CherryBombEntity extends PvzPlantEntity {
         // Create a damage box around the entity
         Box box = new Box(this.getX() - 2.5f, this.getY() - 2.5f, this.getZ() - 2.5f, this.getX() + 2.5f, this.getY() + 2.5f, this.getZ() + 2.5f);
         List<Entity> entities = this.getWorld().getOtherEntities(this, box, entity -> entity instanceof HostileEntity);
-        entities.forEach(entity -> entity.damage(this.getWorld().getDamageSources().explosion(this, null), 20.0f));
+        entities.forEach(entity -> entity.damage(new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageTypes.CHERRY_EXPLOSION)), 20.0f));
 
         this.discard();
     }

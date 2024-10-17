@@ -2,10 +2,7 @@ package ru.allexs82.apvz.common.entity.zombies;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
@@ -15,13 +12,6 @@ import ru.allexs82.apvz.core.ModSounds;
 public class ConeheadZombieEntity extends ArmoredZombieEntity {
     public ConeheadZombieEntity(EntityType<? extends PvzZombieEntity> entityType, World world) {
         super(entityType, world);
-    }
-
-    public static DefaultAttributeContainer.Builder createDefaultConeheadZombieAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 20)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
     }
 
     @Override

@@ -70,5 +70,12 @@
       "apvz:plastic_hit",
       "apvz:plastic_hit2"
     ]
+  },
+  "iron_impact": {
+    "subtitles": "apvz.iron_impact",
+    "sounds": [
+      "apvz:iron_impact",
+      "apvz:iron_impact2"
+    ]
   }
 }
