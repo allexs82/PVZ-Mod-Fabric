@@ -9,14 +9,14 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
 public class SunflowerEntity extends PvzPlantEntity {
     private static final String TICKS_UNTIL_SUN_DROP_KEY = "TicksUntilSunDrop";
-    private static final int MIN_TICKS_UNTIL_SUN_DROP = TickConvertor.minutes(3f);
-    private static final int MAX_TICKS_UNTIL_SUN_DROP = TickConvertor.minutes(4.5f);
+    private static final int MIN_TICKS_UNTIL_SUN_DROP = TickConverter.minutes(3f);
+    private static final int MAX_TICKS_UNTIL_SUN_DROP = TickConverter.minutes(4.5f);
     private int ticksUntilSunDrop = MAX_TICKS_UNTIL_SUN_DROP;
 
     public SunflowerEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
@@ -56,7 +56,7 @@ public class SunflowerEntity extends PvzPlantEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2)),
+                DefaultAnimations.getSpawnController(this, state -> this, TickConverter.seconds(2)),
                 DefaultAnimations.genericIdleController(this)
         );
     }

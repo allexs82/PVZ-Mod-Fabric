@@ -8,12 +8,12 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.world.PvzExplosion;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
 public class PotatoMineEntity extends PvzPlantEntity {
-    private final static int SPAWN_ANIMATION_LENGTH = TickConvertor.seconds(20);
+    private final static int SPAWN_ANIMATION_LENGTH = TickConverter.seconds(20);
 
     public PotatoMineEntity(EntityType<? extends PvzPlantEntity> entityType, World world) {
         super(entityType, world);

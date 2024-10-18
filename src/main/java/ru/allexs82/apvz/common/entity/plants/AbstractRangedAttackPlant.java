@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 
 public abstract class AbstractRangedAttackPlant extends PvzPlantEntity implements RangedAttackMob {
     protected AbstractRangedAttackPlant(EntityType<? extends PvzPlantEntity> entityType, World world) {
@@ -44,7 +44,7 @@ public abstract class AbstractRangedAttackPlant extends PvzPlantEntity implement
     protected abstract @NotNull PvzProjectileEntity createProjectile();
 
     protected int getAttackDelayTicks() {
-        return TickConvertor.seconds(1);
+        return TickConverter.seconds(1);
     }
 
     protected int getAttackRange() {

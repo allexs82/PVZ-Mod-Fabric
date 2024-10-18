@@ -10,7 +10,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import ru.allexs82.apvz.common.world.PvzExplosion;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
@@ -32,9 +32,9 @@ public class CherryBombEntity extends PvzPlantEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(1)),
+                DefaultAnimations.getSpawnController(this, state -> this, TickConverter.seconds(1)),
                 new AnimationController<>(this, "Attack", state -> {
-                    if (this.age <= TickConvertor.seconds(1)) return PlayState.STOP;
+                    if (this.age <= TickConverter.seconds(1)) return PlayState.STOP;
                     return state.setAndContinue(RawAnimation.begin().thenPlayAndHold("attack.explode"));
                 })
         );
@@ -43,7 +43,7 @@ public class CherryBombEntity extends PvzPlantEntity {
     @Override
     public void tick() {
         super.tick();
-        if (age <= TickConvertor.seconds(1.6f)) return;
+        if (age <= TickConverter.seconds(1.6f)) return;
 
         this.playSound(ModSounds.CHERRY_BOMB_EXPLOSION, 0.4f, 1.0f);
 

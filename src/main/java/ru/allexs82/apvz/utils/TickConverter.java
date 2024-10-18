@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
-public abstract class TickConvertor {
+public abstract class TickConverter {
 
     public static int seconds(float value) {
         return convert(value, TimeUnit.SECONDS);

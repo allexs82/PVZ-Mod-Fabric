@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import ru.allexs82.apvz.core.ModEntities;
 import ru.allexs82.apvz.core.ModItems;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 
 public class SnowPeaEntity extends PvzProjectileEntity {
     public SnowPeaEntity(World world, LivingEntity owner) {
@@ -32,7 +32,7 @@ public class SnowPeaEntity extends PvzProjectileEntity {
         }
         if (livingEntity.isOnFire()) livingEntity.extinguish();
         StatusEffectInstance slowness =
-                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConvertor.seconds(5), 1, true, false);
+                new StatusEffectInstance(StatusEffects.SLOWNESS, TickConverter.seconds(5), 1, true, false);
         livingEntity.addStatusEffect(slowness);
     }
 

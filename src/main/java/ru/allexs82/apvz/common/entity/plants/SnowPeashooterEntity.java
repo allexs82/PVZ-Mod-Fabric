@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import ru.allexs82.apvz.common.entity.projectile.PvzProjectileEntity;
 import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
@@ -26,7 +26,7 @@ public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(
-                DefaultAnimations.getSpawnController(this, state -> this, TickConvertor.seconds(2)),
+                DefaultAnimations.getSpawnController(this, state -> this, TickConverter.seconds(2)),
                 DefaultAnimations.genericIdleController(this)
         );
     }

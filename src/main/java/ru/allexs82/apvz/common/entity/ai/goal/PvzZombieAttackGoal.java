@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.util.Hand;
 import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
 import ru.allexs82.apvz.core.ModSounds;
-import ru.allexs82.apvz.utils.TickConvertor;
+import ru.allexs82.apvz.utils.TickConverter;
 
 public class PvzZombieAttackGoal extends MeleeAttackGoal {
     private final int firstAttackDelay;
@@ -16,7 +16,7 @@ public class PvzZombieAttackGoal extends MeleeAttackGoal {
     private boolean shouldCountUntilNextAttack = false;
 
     public PvzZombieAttackGoal(PvzZombieEntity entity, float firstAttackDelaySeconds, float attackDelaySeconds) {
-        this(entity, TickConvertor.seconds(firstAttackDelaySeconds), TickConvertor.seconds(attackDelaySeconds));
+        this(entity, TickConverter.seconds(firstAttackDelaySeconds), TickConverter.seconds(attackDelaySeconds));
     }
 
     public PvzZombieAttackGoal(PvzZombieEntity entity, int firstAttackDelayTicks, int attackDelayTicks) {
