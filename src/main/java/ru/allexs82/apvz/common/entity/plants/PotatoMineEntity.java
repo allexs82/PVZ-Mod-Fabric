@@ -40,7 +40,7 @@ public class PotatoMineEntity extends PvzPlantEntity {
             box = box.expand(0.5f);
             PvzExplosion explosion = new PvzExplosion(box, this.getWorld(), this, PvzExplosion.HOSTILE_PREDICATE);
             if (explosion.testPredicateAndExplode(true)) {
-                this.playSound(ModSounds.POTATO_MINE, 0.4f, 1.0f);
+                this.playSound(ModSounds.POTATO_MINE, 0.6f, 1.0f);
                 this.discard();
             }
         }

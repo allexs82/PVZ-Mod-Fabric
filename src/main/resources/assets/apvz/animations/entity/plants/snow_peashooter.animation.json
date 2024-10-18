@@ -12,11 +12,15 @@
 							"easing": "linear"
 						},
 						"0.5": {
-							"vector": [2, 0, 0],
-							"easing": "easeInOutSine"
+							"vector": [2.5, 0, 0],
+							"easing": "easeOutSine"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeInSine"
 						},
 						"1.5": {
-							"vector": [-2, 0, 0],
+							"vector": [-2.5, 0, 0],
 							"easing": "easeOutSine"
 						},
 						"2.0": {
@@ -28,7 +32,7 @@
 			}
 		},
 		"misc.spawn": {
-			"loop": false,
+			"loop": "hold_on_last_frame",
 			"animation_length": 2,
 			"bones": {
 				"leafs": {

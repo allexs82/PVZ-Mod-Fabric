@@ -87,8 +87,8 @@ public abstract class PvzZombieEntity extends HostileEntity implements GeoEntity
         this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
         this.goalSelector.add(6, new WanderAroundGoal(this, 1D));
 
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PvzPlantEntity.class, true));
         this.targetSelector.add(1, new RevengeGoal(this, PvzZombieEntity.class));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PvzPlantEntity.class, true));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, MerchantEntity.class, true));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));

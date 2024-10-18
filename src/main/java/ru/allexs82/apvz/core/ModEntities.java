@@ -66,19 +66,19 @@ public class ModEntities {
 
         SUNFLOWER_ENTITY = register("sunflower", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SunflowerEntity::new)
-                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 0.7f)).build());
 
         PEASHOOTER_ENTITY = register("peashooter", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, PeashooterEntity::new)
-                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 0.7f)).build());
 
         SNOW_PEASHOOTER_ENTITY = register("snow_peashooter", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, SnowPeashooterEntity::new)
-                .dimensions(EntityDimensions.fixed(0.8f, 1.2f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 0.7f)).build());
 
         CHERRY_BOMB_ENTITY = register("cherry_bomb", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, CherryBombEntity::new)
-                .dimensions(EntityDimensions.fixed(0.8f, 0.6f)).build());
+                .dimensions(EntityDimensions.fixed(0.8f, 0.7f)).build());
 
         CONEHEAD_ZOMBIE_ENTITY = register("conehead_zombie", FabricEntityTypeBuilder
                 .create(SpawnGroup.MONSTER, ConeheadZombieEntity::new)
