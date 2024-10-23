@@ -17,7 +17,7 @@ public class PeashooterEntity extends AbstractRangedAttackPlant {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultPeashooterAttributes() {
+    public static DefaultAttributeContainer.Builder createPeashooterAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10);
     }

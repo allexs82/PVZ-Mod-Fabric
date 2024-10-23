@@ -18,7 +18,7 @@ public class SnowPeashooterEntity extends AbstractRangedAttackPlant {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultSnowPeashooterAttributes() {
+    public static DefaultAttributeContainer.Builder createSnowPeashooterAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10);
     }

@@ -44,6 +44,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModEntities.CONEHEAD_ZOMBIE_ENTITY, "Зомби с конусом");
         tb.add(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, "Зомби с ведром");
         tb.add(ModEntities.POTATO_MINE_ENTITY, "Картофельная мина");
+        tb.add(ModEntities.FLAG_ZOMBIE_ENTITY, "Зомби с флагом");
     }
 
     protected void generateItemTranslation(TranslationBuilder tb) {
@@ -64,5 +65,7 @@ public class RussianLangProvider extends FabricLanguageProvider {
         tb.add(ModItems.CONEHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с конусом");
         tb.add(ModItems.BUCKETHEAD_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с ведром");
         tb.add(ModItems.POTATO_MINE_SEED_PACKET, "Пакетик семенами картофельной мины");
+        tb.add(ModItems.FLAG, "Флаг");
+        tb.add(ModItems.FLAG_ZOMBIE_SPAWN_EGG, "Яйцо призыва зомби с флагом");
     }
 }

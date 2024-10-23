@@ -14,12 +14,14 @@ import ru.allexs82.apvz.common.entity.projectile.SnowPeaEntity;
 import ru.allexs82.apvz.common.entity.zombies.BasicZombieEntity;
 import ru.allexs82.apvz.common.entity.zombies.BucketheadZombieEntity;
 import ru.allexs82.apvz.common.entity.zombies.ConeheadZombieEntity;
+import ru.allexs82.apvz.common.entity.zombies.FlagZombieEntity;
 
 public class ModEntities {
     public static final EntityType<PeaEntity> PEA_ENTITY;
     public static final EntityType<SnowPeaEntity> SNOW_PEA_ENTITY;
 
     public static final EntityType<BasicZombieEntity> BASIC_ZOMBIE_ENTITY;
+    public static final EntityType<FlagZombieEntity> FLAG_ZOMBIE_ENTITY;
     public static final EntityType<ConeheadZombieEntity> CONEHEAD_ZOMBIE_ENTITY;
     public static final EntityType<BucketheadZombieEntity> BUCKETHEAD_ZOMBIE_ENTITY;
 
@@ -34,15 +36,16 @@ public class ModEntities {
     }
 
     private static void initEntitiesAttributes() {
-        FabricDefaultAttributeRegistry.register(BASIC_ZOMBIE_ENTITY, BasicZombieEntity.createDefaultBasicZombieAttributes());
-        FabricDefaultAttributeRegistry.register(CONEHEAD_ZOMBIE_ENTITY, BasicZombieEntity.createDefaultBasicZombieAttributes());
-        FabricDefaultAttributeRegistry.register(BUCKETHEAD_ZOMBIE_ENTITY, BasicZombieEntity.createDefaultBasicZombieAttributes());
+        FabricDefaultAttributeRegistry.register(BASIC_ZOMBIE_ENTITY, BasicZombieEntity.createBasicZombieAttributes());
+        FabricDefaultAttributeRegistry.register(FLAG_ZOMBIE_ENTITY, FlagZombieEntity.createFlagZombieAttributes());
+        FabricDefaultAttributeRegistry.register(CONEHEAD_ZOMBIE_ENTITY, BasicZombieEntity.createBasicZombieAttributes());
+        FabricDefaultAttributeRegistry.register(BUCKETHEAD_ZOMBIE_ENTITY, BasicZombieEntity.createBasicZombieAttributes());
 
-        FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createDefaultPeashooterAttributes());
-        FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createDefaultSunflowerAttributes());
-        FabricDefaultAttributeRegistry.register(CHERRY_BOMB_ENTITY, CherryBombEntity.createDefaultCherryBombAttributes());
-        FabricDefaultAttributeRegistry.register(POTATO_MINE_ENTITY, PotatoMineEntity.createDefaultPotatoMineAttributes());
-        FabricDefaultAttributeRegistry.register(SNOW_PEASHOOTER_ENTITY, SnowPeashooterEntity.createDefaultSnowPeashooterAttributes());
+        FabricDefaultAttributeRegistry.register(PEASHOOTER_ENTITY, PeashooterEntity.createPeashooterAttributes());
+        FabricDefaultAttributeRegistry.register(SUNFLOWER_ENTITY, SunflowerEntity.createSunflowerAttributes());
+        FabricDefaultAttributeRegistry.register(CHERRY_BOMB_ENTITY, CherryBombEntity.createCherryBombAttributes());
+        FabricDefaultAttributeRegistry.register(POTATO_MINE_ENTITY, PotatoMineEntity.createPotatoMineAttributes());
+        FabricDefaultAttributeRegistry.register(SNOW_PEASHOOTER_ENTITY, SnowPeashooterEntity.createSnowPeashooterAttributes());
     }
 
     private static <T extends Entity> EntityType<T> register(String id, EntityType<T> entityType) {
@@ -91,5 +94,9 @@ public class ModEntities {
         POTATO_MINE_ENTITY = register("potato_mine", FabricEntityTypeBuilder
                 .create(SpawnGroup.MISC, PotatoMineEntity::new)
                 .dimensions(EntityDimensions.fixed(0.8f, 0.5f)).build());
+
+        FLAG_ZOMBIE_ENTITY = register("flag_zombie", FabricEntityTypeBuilder
+                .create(SpawnGroup.MONSTER, FlagZombieEntity::new)
+                .dimensions(EntityDimensions.fixed(0.6f, 1.95f)).build());
     }
 }

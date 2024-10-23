@@ -9,6 +9,7 @@ import net.minecraft.util.math.RotationAxis;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.allexs82.apvz.common.entity.zombies.PvzZombieEntity;
+import ru.allexs82.apvz.core.ModItems;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
@@ -58,6 +59,9 @@ public class DefaultBipedZombieBlockAndItemLayer<T extends PvzZombieEntity> exte
 
             if (stack.getItem() instanceof ShieldItem)
                 poseStack.translate(0, 0.125, -0.25);
+            else if (stack.isOf(ModItems.FLAG)) {
+                poseStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-40));
+            }
 
         } else if (stack == this.offHandStack) {
             poseStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-90f));

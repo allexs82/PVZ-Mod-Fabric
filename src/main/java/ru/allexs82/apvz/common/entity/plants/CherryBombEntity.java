@@ -24,7 +24,7 @@ public class CherryBombEntity extends PvzPlantEntity {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultCherryBombAttributes() {
+    public static DefaultAttributeContainer.Builder createCherryBombAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 1.0D);
     }

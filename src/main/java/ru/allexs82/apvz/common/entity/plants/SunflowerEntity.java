@@ -23,7 +23,7 @@ public class SunflowerEntity extends PvzPlantEntity {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultSunflowerAttributes() {
+    public static DefaultAttributeContainer.Builder createSunflowerAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10);
     }

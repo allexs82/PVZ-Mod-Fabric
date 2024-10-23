@@ -19,7 +19,7 @@ public class PotatoMineEntity extends PvzPlantEntity {
         super(entityType, world);
     }
 
-    public static DefaultAttributeContainer.Builder createDefaultPotatoMineAttributes() {
+    public static DefaultAttributeContainer.Builder createPotatoMineAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D);
     }

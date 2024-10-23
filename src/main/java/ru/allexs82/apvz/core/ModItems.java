@@ -1,6 +1,7 @@
 package ru.allexs82.apvz.core;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.data.client.Models;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
@@ -32,6 +33,8 @@ public class ModItems {
     public static final Item CONEHEAD_ZOMBIE_SPAWN_EGG;
     public static final Item BUCKETHEAD_ZOMBIE_SPAWN_EGG;
     public static final Item POTATO_MINE_SEED_PACKET;
+    public static final Item FLAG;
+    public static final Item FLAG_ZOMBIE_SPAWN_EGG;
 
     public static void init() {
         ModCore.LOGGER.info("Items initialization");
@@ -55,5 +58,7 @@ public class ModItems {
         CONEHEAD_ZOMBIE_SPAWN_EGG = builder("conehead_zombie").spawnEgg(ModEntities.CONEHEAD_ZOMBIE_ENTITY,0x7c9b80, 0xff6600).build();
         BUCKETHEAD_ZOMBIE_SPAWN_EGG = builder("buckethead_zombie").spawnEgg(ModEntities.BUCKETHEAD_ZOMBIE_ENTITY, 0x7c9b80, 0xcbc5c4).build();
         POTATO_MINE_SEED_PACKET = seedPacket("potato_mine", ModEntities.POTATO_MINE_ENTITY).build();
+        FLAG = builder("flag").model(Models.HANDHELD_ROD).build();
+        FLAG_ZOMBIE_SPAWN_EGG = builder("flag_zombie").spawnEgg(ModEntities.FLAG_ZOMBIE_ENTITY, 0x7c9b80, 0xd62122).build();
     }
 }

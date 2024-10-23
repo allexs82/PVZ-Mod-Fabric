@@ -1,6 +1,7 @@
 package ru.allexs82.apvz.common.world;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -81,7 +82,7 @@ public class PvzExplosion {
         List<Entity> entities = this.world.getOtherEntities(except, explosionBox, predicate);
         entities.forEach(entity -> {
             DamageSource damageSource = getDamageSource();
-            entity.damage(damageSource, damage);
+            entity.damage(damageSource, calculateDamageForEntity(entity));
         });
 
         if (shouldSpawnParticles) spawnParticles(ParticleTypes.EXPLOSION_EMITTER, explosionBox.getCenter());
@@ -101,7 +102,7 @@ public class PvzExplosion {
 
         entities.forEach(entity -> {
             DamageSource damageSource = getDamageSource();
-            entity.damage(damageSource, damage);
+            entity.damage(damageSource, calculateDamageForEntity(entity));
         });
 
         if (shouldSpawnParticles) spawnParticles(ParticleTypes.EXPLOSION_EMITTER, explosionBox.getCenter());
@@ -135,5 +136,17 @@ public class PvzExplosion {
         return new DamageSource(this.world.getRegistryManager()
                 .get(RegistryKeys.DAMAGE_TYPE)
                 .entryOf(ModDamageTypes.PVZ_EXPLOSION));
+    }
+
+    /**
+     * Basically if {@code entity} is instance of {@code PvzZombieEntity}, then returns very large number.
+     * <br>
+     * Subject to change. Since in the game later will be gargantuar.
+     *
+     * @param entity entity, that's being damaged
+     * @return damage amount
+     */
+    private float calculateDamageForEntity(Entity entity) {
+        return entity instanceof PvzZombieEntity zombie ? (float) zombie.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH) : damage;
     }
 }
